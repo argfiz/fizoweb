@@ -7,17 +7,27 @@
     <title>Paginas web - fizoweb</title>
     <meta name="description" content="Paginas web al alcance de todos.">
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-    <nav id="navbar">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
         <div class="navbar-logo">
-            <img src="./assets/logo-v1.png" alt="">
-            <span>FIZOWEB</span>
+            <img src="./assets/logo-v1.png" alt="Vanguard Logo">
+            <span>FizoWeb</span>
         </div>
 
-        <div class="nav-menu">
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
             <ul class="nav-links">
                 <li><a href="#home">Inicio</a></li>
                 <li><a href="./product.html">Producto</a></li>
@@ -25,19 +35,18 @@
             </ul>
         </div>
         
-
         <div class="navbar-social-button">
-            <a href="">F</a>
-            <a href="">E</a>
-            <a href="">In</a>
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-linkedin-in"></i></a>
         </div>    
     </nav>
 
-    <section id="home">
-        <header class="main-container">
-            <div id="hero-container">
-                <h1>Tu página web, <span>más cerca</span> que nunca.</h1>
-                <h2>Elije la combinación que mas te convenga para tu página y comencemos!</h2>
+    <section id="home" class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-blue-100">
+        <div class="main-container mx-auto px-4">
+            <div id="hero-container" class="max-w-3xl mx-auto mb-16">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Tu página web, <span class="text-blue-500 relative">más cerca</span> que nunca.</h1>
+                <h2 class="text-xl text-gray-500">Elije la combinación que mas te convenga para tu página y comencemos!</h2>
             </div>
 
             <div class="cards-container">
@@ -59,7 +68,7 @@
                     </ul>
 
                     <div class="card-price-container">
-                            <p class="card-price">$150.000 ARS</p>
+                        <p class="card-price">$150.000 ARS</p>
                     </div> 
                 </article>   
 
@@ -81,7 +90,7 @@
                     </ul>
 
                     <div class="card-price-container">
-                            <p class="card-price">$200.000 ARS</p>
+                        <p class="card-price">$200.000 ARS</p>
                     </div> 
                 </article>   
 
@@ -107,11 +116,11 @@
                     </div> 
                 </article> 
             </div>
-        </header>    
+        </div>    
     </section>
 
-    <section id="services">
-        <div class="main-container">
+    <section id="services" class="py-16 bg-white">
+        <div class="main-container mx-auto px-4">
             <div class="cards-container">
                 <article class="mini-card">
                     <div class="image-container">
@@ -120,53 +129,62 @@
                     <div class="card-header">
                         <h2>Hosting</h2>
                     </div>
-                    <p>...</p>
+                    <p>Alojamiento web de alto rendimiento con soporte técnico 24/7 y garantía de uptime del 99.9%.</p>
                 </article>
 
                 <article class="mini-card">
+                    <div class="image-container">
+                        <img src="./assets/product-image.png" alt="Imagen de mantenimiento">
+                    </div>
                     <div class="card-header">
                         <h2>Mantenimiento</h2>
                     </div>
-                    <p>...</p>
+                    <p>Actualizaciones periódicas, copias de seguridad y solución de problemas para mantener tu sitio siempre funcionando.</p>
                 </article>
 
                 <article class="mini-card">
+                    <div class="image-container">
+                        <img src="./assets/product-image.png" alt="Imagen de SEO">
+                    </div>
                     <div class="card-header">
                         <h2>SEO</h2>
                     </div>
-                    <p>...</p>
+                    <p>Optimización para motores de búsqueda para aumentar tu visibilidad y atraer más clientes potenciales.</p>
                 </article>
 
                 <article class="mini-card">
+                    <div class="image-container">
+                        <img src="./assets/product-image.png" alt="Imagen de multidispositivos">
+                    </div>
                     <div class="card-header">
                         <h2>Multidispositivos</h2>
                     </div>
-                    <p>...</p>
+                    <p>Diseño responsive que se adapta perfectamente a cualquier dispositivo: móvil, tablet o escritorio.</p>
                 </article>
             </div>
         </div>  
     </section>
 
-    <section id="product"> 
-        <div class="main-container">
+    <section id="product" class="py-16 bg-gradient-to-br from-green-50 to-green-100"> 
+        <div class="main-container mx-auto px-4">
             <div class="title-container">
-                <p>Conoce más sobre nuestras páginas web</p>
+                <p class="text-xl text-gray-500">Conoce más sobre nuestras páginas web</p>
             </div> 
         
-            <div class="container">  
-                <div class="text-container">
-                    <p>Consta de un diseño ligero, optimizado para SEO y con alto rendimiento. Es adaptable a cualquier dispositivo para garantizar una experiencia única.</p>
-                    <p>Soporte de hosting de hasta un año. Ideal para destacar tu negocio con calidad y eficiencia.</p>
-                    <a href="">Más detalles</a>
+            <div class="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">  
+                <div class="text-container md:w-1/2">
+                    <p class="mb-6">Consta de un diseño ligero, optimizado para SEO y con alto rendimiento. Es adaptable a cualquier dispositivo para garantizar una experiencia única.</p>
+                    <p class="mb-6">Soporte de hosting de hasta un año. Ideal para destacar tu negocio con calidad y eficiencia.</p>
+                    <a href="" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:-translate-y-1">Más detalles</a>
                 </div>
-                <div class="image-container">
-                    <img src="./assets/product-image.png" alt="Imagen del producto">
+                <div class="image-container md:w-1/2">
+                    <img src="./assets/product-image.png" alt="Imagen del producto" class="rounded-xl shadow-xl">
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="bg-slate-800 text-white py-8">
         <div class="footer-container">
             <p>2023 VANGUARD. Todos los derechos reservados.</p>
         </div>

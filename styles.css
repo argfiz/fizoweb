@@ -47,7 +47,7 @@ img {
   height: auto;
 }
 
-/* === LAYOUT === */
+/* ================= LAYOUT ================ */
 .main-container {
   width: 100%;
   max-width: var(--container-width);
@@ -58,6 +58,33 @@ img {
 section {
   padding: 80px 0;
 }
+
+/* Estilos base para todos los divisores */
+.section-divider {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.section-divider svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+/* Animación suave para los divisores */
+/*.section-divider path {
+  transition: all 0.5s ease;
+}*/
+
+/*.section-divider:hover path {
+  transform: translateY(-5px);
+}*/
 
 /* === NAVBAR === */
 #navbar {
@@ -169,7 +196,8 @@ section {
 /* === HOME SECTION === */
 #home {
   padding-top: 150px;
-  min-height: 100vh;
+  padding-bottom: 0px;
+  min-height: auto;
   background: linear-gradient(180deg,rgba(248, 249, 250, 0.4) 0%, rgba(233, 236, 239, 1) 100%);
 }
 

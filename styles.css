@@ -87,14 +87,15 @@ section {
 }
 
 .navbar-logo span {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--secondary);
 }
 
 .nav-links {
   display: flex;
   gap: 30px;
+  font-size: 1.3rem;
 }
 
 .nav-links a {
@@ -169,7 +170,7 @@ section {
 #home {
   padding-top: 150px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  background: linear-gradient(180deg,rgba(248, 249, 250, 0.4) 0%, rgba(233, 236, 239, 1) 100%);
 }
 
 .hero-container {
@@ -185,7 +186,7 @@ section {
 }
 
 .hero-container h1 span {
-  color: var(--primary);
+  color: var(--accent);
   position: relative;
 }
 
@@ -201,10 +202,10 @@ section {
 }
 
 .hero-container h2 {
-  font-size: 1.2rem;
-  font-weight: 400;
+  font-size: 1.6rem;
+  font-weight: 600;
   color: var(--gray);
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -212,18 +213,18 @@ section {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  gap: 15px;
+ padding-top: 40px;
+
 }
 
 .card {
   background-color: white;
-  border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  overflow: hidden;
   transition: var(--transition);
-  position: relative;
-  padding-bottom: 80px;
+  border-radius: 50px 0px 50px 50px;  
+  height: fit-content;   
+    padding: 5px;                                            ;
 }
 
 .card:hover {
@@ -232,15 +233,60 @@ section {
 }
 
 .card-header {
-  background-color: var(--primary);
-  color: white;
-  padding: 20px;
-  text-align: center;
+  color: #fff;
+  padding: 5px 28px 18px 28px;
+  border-radius: 50px 0 40px 0;
+  width: 100%;
+  box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
+  position: relative;
+  overflow: hidden;
+  text-align: right;
+  background: var(--primary); /* fallback */
+}
+
+/* Fondo para la primera tarjeta (izquierda) */
+.cards-container .card:nth-child(1) .card-header {
+  background:
+    radial-gradient(ellipse at 120% 100%, var(--primary) 60px, transparent 120px),
+    linear-gradient(120deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* Fondo para la segunda tarjeta (centro) */
+.cards-container .card:nth-child(2) .card-header {
+  background:
+    radial-gradient(ellipse at 50% 120%, var(--secondary) 90px, transparent 180px),
+    linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+}
+
+/* Fondo para la tercera tarjeta (derecha) */
+.cards-container .card:nth-child(3) .card-header {
+  background:
+    radial-gradient(ellipse at -20% 100%, var(--accent) 60px, transparent 120px),
+    linear-gradient(-120deg, var(--accent) 0%, var(--dark) 100%);
 }
 
 .card-header h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 1;
+  position: relative;
+  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
+
+}
+.card-header span {
+  font-size: 1.4rem;
+  font-weight: 500;
+  background: rgba(255,255,255,0.13);
+  padding: 4px 8px;
+  border-radius: 1em;
+  display: inline-block;
+  z-index: 1;
+  position: relative;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
+  width: 100%;
+  text-align: center;
 }
 
 .card ul {
@@ -252,6 +298,7 @@ section {
   border-bottom: 1px solid var(--light-gray);
   display: flex;
   align-items: center;
+  font-size: 1.2rem;
 }
 
 .card li:last-child {
@@ -266,20 +313,43 @@ section {
 }
 
 .card-price-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
   text-align: center;
-  background-color: var(--light-gray);
+  background: var(--dark);
+  color: #fff;
+  padding: 22px 28px 18px 28px;
+  border-radius: 0 0 50px 50px;
+  width: 100%;
+  box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
 }
 
 .card-price {
-  font-size: 1.8rem;
+  font-size: 2.3rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #fff;
+  margin-bottom: 0.1em;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
+  z-index: 1;
+  position: relative;
 }
+
+.card-price-container span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: inline-block;
+  z-index: 1;
+  position: relative;
+  letter-spacing: 3px;
+  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
+  margin-top: -6px;
+  color: #fff;
+}
+
+
+
 
 /* === MINI CARDS === */
 #services {
@@ -321,17 +391,23 @@ section {
 }
 
 .mini-card .card-header {
-  background-color: transparent;
-  color: var(--dark);
-  padding: 15px;
-  border-bottom: 2px solid var(--primary);
+  background: none;
+  color: var(--primary);
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--primary);
+  border-radius: 0;
   width: 100%;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.3rem;
+  box-shadow: none;
 }
 
 .mini-card p {
-  padding: 0 15px 20px;
+  padding: 20px;
   color: var(--gray);
   flex-grow: 1;
+  font-size: 1.2rem;
 }
 
 /* === PRODUCT SECTION === */

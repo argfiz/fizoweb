@@ -42,3 +42,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+//Carrusel
+/*document.addEventListener("DOMContentLoaded", function () {
+  const items = document.querySelectorAll(".gallery-item");
+  const totalItems = items.length;
+  let currentIndex = 2;
+
+  function updateGallery() {
+      items.forEach((item, index) => {
+          item.classList.remove("gallery-item-1", "gallery-item-2", "gallery-item-3", "gallery-item-4", "gallery-item-5");
+          let newIndex = (index - currentIndex + totalItems) % totalItems;
+          item.classList.add(`gallery-item-${newIndex + 1}`);
+      });
+  }
+
+  function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalItems;
+      updateGallery();
+  }
+
+function prevSlide() {
+currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+updateGallery();
+}
+
+document.getElementById("prevBtn").addEventListener("click", prevSlide);
+document.getElementById("nextBtn").addEventListener("click", nextSlide);
+
+});*/

@@ -51,3 +51,16 @@ animatedElements.forEach(el => {
   el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
   observer.observe(el);
 });
+
+
+
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Evita que se despliegue si se hace click en un enlace dentro de la card
+    if (e.target.tagName === 'A') return;
+    card.classList.toggle('open');
+  });
+});
+
+

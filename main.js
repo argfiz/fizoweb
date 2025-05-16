@@ -53,8 +53,6 @@ animatedElements.forEach(el => {
 });
 
 
-
-
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', function(e) {
     // Evita que se despliegue si se hace click en un enlace dentro de la card
@@ -63,4 +61,79 @@ document.querySelectorAll('.card').forEach(card => {
   });
 });
 
+
+
+
+/*******************GALLERY**********************/
+
+
+const servicesData = [
+  {
+    key: "paginas",
+    icon: "fas fa-file-alt",
+    title: "Páginas",
+    desc: "Cada página está diseñada para contener hasta cuatro secciones, cada página se dedica a presentar una parte clave de la información del negocio."
+  },
+  {
+    key: "secciones",
+    icon: "fas fa-layer-group",
+    title: "Secciones",
+    desc: "Cada sección cuenta con una altura aproximada adaptada a la pantalla, garantizando una presentación óptima de la información almacenada."
+  },
+  {
+    key: "productos",
+    icon: "fas fa-box",
+    title: "Productos",
+    desc: "La cantidad de productos que indique el pack elegido, serán precargados antes del despliegue."
+  },
+  {
+    key: "seo",
+    icon: "fas fa-search",
+    title: "SEO",
+    desc: "Optimización para motores de búsqueda para aumentar tu visibilidad y atraer más clientes potenciales."
+  },
+  {
+    key: "multidispositivos",
+    icon: "fas fa-mobile-alt",
+    title: "Multidispositivos",
+    desc: "Diseño responsive que se adapta perfectamente a cualquier dispositivo: móvil, tablet o escritorio."
+  },
+  {
+    key: "hosting",
+    icon: "fas fa-server",
+    title: "Hosting",
+    desc: "Instalación y alojamiento web de alto rendimiento con soporte técnico 24/7."
+  },
+  {
+    key: "mantenimiento",
+    icon: "fas fa-tools",
+    title: "Mantenimiento",
+    desc: "Copias de seguridad y solución de problemas para mantener tu sitio siempre funcionando."
+  }
+];
+
+function renderServiceCards(selectedKey = "paginas") {
+  const cardsContainer = document.getElementById("servicesCards");
+  cardsContainer.innerHTML = servicesData
+    .filter(service => service.key === selectedKey)
+    .map(service => `
+      <div class="service-mini-card active">
+        <i class="${service.icon}"></i>
+        <h3>${service.title}</h3>
+        <p>${service.desc}</p>
+      </div>
+    `).join("");
+}
+
+// Inicializa con la primera pastilla activa
+renderServiceCards();
+
+// Lógica de tabs
+document.querySelectorAll('.service-pill').forEach(pill => {
+  pill.addEventListener('click', function() {
+    document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    renderServiceCards(this.dataset.service);
+  });
+});
 

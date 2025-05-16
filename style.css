@@ -234,7 +234,7 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
  padding-top: 40px;
- padding-bottom: 75px;
+ padding-bottom: 25px;
 
 }
 
@@ -243,7 +243,7 @@ section {
   box-shadow: var(--box-shadow);
   transition: var(--transition);
   border-radius: 50px 0px 50px 0px; 
-  border: 1px solid gray;
+  border: 1px solid var(--dark);
   height: fit-content;   
   cursor: pointer;
   overflow: hidden;
@@ -410,7 +410,7 @@ section {
 /* === MINI CARDS === */
 #services {
   background-color: white;
-  padding-bottom: 0px ;
+  padding: 0px;
 }
 
 .mini-card {
@@ -429,7 +429,10 @@ section {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
-
+.title-service-container{
+  display: flex;
+  gap: 25px;
+}
 .mini-card .image-container {
   overflow: hidden;
   width: 100px;
@@ -447,16 +450,7 @@ section {
   transform: scale(1.05);
 }
 
-.mini-card .card-header {
-  background: none;
-  color: var(--primary);
-  padding-bottom: 8px;
-  border-bottom: 3px solid var(--primary);
-  border-radius: 0;
-  width: 100%;
-  text-align: center;
-  box-shadow: none;
-}
+
 .mini-card .card-header h2{
 font-size: x-large;
 }
@@ -471,20 +465,35 @@ font-size: x-large;
 /* ========== PRODUCT SECTION ======== */
 #product {
   background-color: var(--light-gray);
+}
+#product .image-container {
+  min-width: 275px;
+  max-width: 300px;
   
 }
-
+#product .image-container img{
+  height: 275px;
+}
 .title-container {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
-.title-container p {
-  font-size: 2.5rem;
+.title-container h1 {
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--accent);
   position: relative;
   display: inline-block;
+  padding-top: 25px;
+}
+.title-container h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+  padding-top: 15px;
 }
 
 .title-container p::after {
@@ -498,47 +507,32 @@ font-size: x-large;
   background-color: var(--dark);
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
+#product .container{
+  display: flex;
+  align-items: flex-start;
+  
 }
 
 .text-container {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 20px;
+  text-align: center;
+  padding: 25px;
+  min-width: 300px;
+  max-width: 800px;
 }
-
+.text-container h2 {
+  font-size: 1.5rem;
+  color: var(--secondary);
+}
 .text-container p {
   font-size: 1.1rem;
   color: var(--dark);
 }
 
-.text-container a {
-  display: inline-block;
-  background-color: var(--primary);
-  color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-weight: 500;
-  margin-top: 10px;
-  transition: var(--transition);
-  width: fit-content;
-}
 
-.text-container a:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
-}
-
-.image-container {
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
-}
 
 /* === CONTACT SECTION === */
 #contact {
@@ -867,14 +861,6 @@ footer {
     font-size: 2.8rem;
   }
   
-  .container {
-    grid-template-columns: 1fr;
-  }
-  
-  .image-container {
-    order: -1;
-  }
-  
   .contact-container {
     grid-template-columns: 1fr;
   }
@@ -1073,9 +1059,7 @@ footer {
   margin: 0 auto;
   padding: 0px;
 }
-.services-cards .container{
-  display: flex;
-}  
+
 .service-mini-card {
   background: #fff;
   border-radius: 0px;

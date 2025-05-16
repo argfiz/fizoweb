@@ -103,7 +103,7 @@ section {
 }
 
 .navbar-logo span {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: white;
 }
@@ -111,7 +111,7 @@ section {
 .nav-links {
   display: flex;
   gap: 30px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .nav-links a {
@@ -467,14 +467,14 @@ font-size: x-large;
   font-size: 1.2rem;
 }
 
-/* === PRODUCT SECTION === */
+/* ========== PRODUCT SECTION ======== */
 #product {
   background-color: var(--light-gray);
 }
 
 .title-container {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
 }
 
 .title-container p {
@@ -1039,7 +1039,7 @@ footer {
 
 .service-pill.active,
 .service-pill:hover {
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: var(--dark);
   color: #fff;
   border-color: var(--accent);
   box-shadow: 0 4px 16px rgba(247, 37, 133, 0.10);
@@ -1103,6 +1103,9 @@ footer {
   .services-tabs {
     gap: 10px;
     flex-wrap: wrap;
+  }
+  .service-pill span {
+    display: none;
   }
 }
 @media (min-width: 900px) {

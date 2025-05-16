@@ -1,3 +1,5 @@
+
+/***************MENU HAMBURGUER****************/
 // Seleccionar elementos del DOM
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
@@ -18,10 +20,14 @@ navLinks.forEach(link => {
   });
 });
 
+
+
+
+/***************************NAVBAR*************************/
 // Cambiar estilo del navbar al hacer scroll
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    navbar.style.padding = '10px 30px';
+    navbar.style.padding = '5px 30px';
     navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
   } else {
     navbar.style.padding = '15px 30px';
@@ -34,6 +40,10 @@ const observerOptions = {
   threshold: 0.1
 };
 
+
+
+
+/*************************PACK ANIMATION***************************/
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -51,7 +61,6 @@ animatedElements.forEach(el => {
   el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
   observer.observe(el);
 });
-
 
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', function(e) {

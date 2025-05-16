@@ -127,8 +127,10 @@ function renderServiceCards(selectedKey = "paginas") {
     .filter(service => service.key === selectedKey)
     .map(service => `
       <div class="service-mini-card active">
-        <i class="${service.icon}"></i>
-        <h3>${service.title}</h3>
+        <div class="container">
+          <i class="${service.icon}"></i>
+          <h3>${service.title}</h3>
+        </div>
         <p>${service.desc}</p>
       </div>
     `).join("");

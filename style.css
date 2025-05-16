@@ -1055,10 +1055,12 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
 }
-
+.services-cards .container{
+  display: flex;
+}  
 .service-mini-card {
   background: #fff;
-  border-radius: 18px;
+  border-radius: 0px;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
   padding: 28px 22px;
   display: flex;
@@ -1070,11 +1072,13 @@ footer {
   border: 1px solid transparent;
   width: 75%;
   margin: 0 auto;
+  margin-bottom: 15px;
+
 }
 
 .service-mini-card.active,
 .service-mini-card:hover {
-  border-color: var(--dark);
+  /*border-color: var(--dark);*/
   box-shadow: 0 8px 24px rgba(67, 97, 238, 0.18);
   transform: translateY(-6px) scale(1.03);
 }
@@ -1086,7 +1090,7 @@ footer {
 }
 
 .service-mini-card h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--secondary);
@@ -1094,7 +1098,7 @@ footer {
 
 .service-mini-card p {
   color: var(--gray);
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 700px) {

@@ -85,7 +85,7 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #7209b7;
+  background: linear-gradient(90deg, var(--dark) 0%, var(--secondary) 100%);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -158,7 +158,7 @@ section {
 }
 
 .navbar-social-button a:hover {
-  background-color: var(--primary);
+  background-color: var(--accent);
   color: white;
   transform: translateY(-3px);
 }
@@ -205,7 +205,7 @@ section {
 }
 
 .hero-container h1 span {
-  color: var(--primary);
+  color: var(--accent);
   position: relative;
 }
 
@@ -410,6 +410,7 @@ section {
 /* === MINI CARDS === */
 #services {
   background-color: white;
+  padding-bottom: 0px ;
 }
 
 .mini-card {
@@ -470,6 +471,7 @@ font-size: x-large;
 /* ========== PRODUCT SECTION ======== */
 #product {
   background-color: var(--light-gray);
+  
 }
 
 .title-container {
@@ -540,11 +542,10 @@ font-size: x-large;
 
 /* === CONTACT SECTION === */
 #contact {
-  
   color: white;
-  position: relative;
-  overflow: hidden;
-  padding-top: 75px;
+  padding: 0;
+  padding-top: 50px;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
 }
 
 #contact::before {
@@ -554,14 +555,14 @@ font-size: x-large;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(114, 9, 183, 0.8) 0%, rgba(67, 97, 238, 0.9) 100%);
+ 
   z-index: 0;
 }
 
 .contact-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px;
+  gap: 20px;
   position: relative;
   z-index: 1;
 }
@@ -656,14 +657,13 @@ font-size: x-large;
 }
 
 .contact-form {
-  background-color: white;
-  border-radius: var(--border-radius);
+  background-color: var(--light);
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form h2 {
-  color: var(--dark);
+  color: var(--accent);
   font-size: 2rem;
   margin-bottom: 30px;
   text-align: center;
@@ -706,11 +706,11 @@ font-size: x-large;
 }
 
 .submit-btn {
-  background-color: var(--primary);
+  background-color: var(--accent);
   color: white;
   border: none;
   padding: 14px 30px;
-  border-radius: 30px;
+  border-radius: 5px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -721,16 +721,16 @@ font-size: x-large;
 }
 
 .submit-btn:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--dark);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
 }
 
-/* =================== FOOTER =================== */
+/************* =================== FOOTER =================== ***************/
 footer {
   background: linear-gradient(90deg, var(--dark) 0%, var(--secondary) 100%);
   color: #fff;
-  padding: 40px 0 20px 0;
+  padding: 40px 0 0 0;
   font-size: 1rem;
 }
 
@@ -743,27 +743,32 @@ footer {
   justify-content: space-between;
   align-items: center;
   gap: 28px;
+  flex-wrap: wrap;
+
 }
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 30px;
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 2px;
 }
 
 .footer-logo {
-  height: 38px;
+  height: 50px;
   width: auto;
-  border-radius: 10px;
-  background: #fff;
+  /*border-radius: 10px;
+  background: #fff;*/
   padding: 4px;
 }
 .footer-links {
   display: flex;
   gap: 28px;
   flex-wrap: wrap;
+}
+.footer-container .footer-brand .footer-links a {
+  font-size: 1rem;
 }
 
 .footer-links a {
@@ -799,7 +804,7 @@ footer {
 
 .footer-social a {
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   transition: color 0.2s, transform 0.2s;
 }
 
@@ -811,7 +816,10 @@ footer {
   font-size: 0.95rem;
   color: #e0e0e0;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 24px;
+  padding-bottom: 18px;
+  width: 100%;
+  background: none;
 }
 /* === ANIMATIONS === */
 @keyframes fadeIn {
@@ -854,7 +862,7 @@ footer {
 }
 
 /* === RESPONSIVE === */
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   .hero-container h1 {
     font-size: 2.8rem;
   }
@@ -874,7 +882,9 @@ footer {
   section {
     padding: 60px 0;
   }
+
 }
+
 
 @media (max-width: 768px) {
   #navbar {
@@ -979,6 +989,13 @@ footer {
   .contact-form {
     padding: 20px;
   }
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 0 10px;
+    text-align: center;
+  }
 }
 
 /* === HAMBURGER ANIMATION === */
@@ -1022,7 +1039,7 @@ footer {
   background: var(--light-gray);
   /*border: 2px solid var(--primary);*/
   border: none;
-  color: var(--secondary);
+  color: var(--dark);
   /*border-radius: 2em;*/
   padding: 18px 22px;
   font-size: 1.1rem;
@@ -1041,8 +1058,8 @@ footer {
 
 .service-pill.active,
 .service-pill:hover {
-  background: var(--dark);
-  color: var(--accent);
+  background: var(--secondary);
+  color: var(--light-gray);
   /*border-color: var(--accent);*/
   box-shadow: 0 4px 16px rgba(247, 37, 133, 0.10);
 }
@@ -1054,6 +1071,7 @@ footer {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0px;
 }
 .services-cards .container{
   display: flex;
@@ -1125,9 +1143,15 @@ footer {
     margin-bottom: 14px;
   }
   .service-mini-card.active h3 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
   .service-mini-card.active p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+  .contact-form{
+    max-width: 500px
   }
 }
+
+
+/**********************************/

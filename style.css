@@ -1008,7 +1008,7 @@ footer {
 .services-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 10px;
   justify-content: center;
   margin-bottom: 32px;
 }
@@ -1019,10 +1019,11 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: #fff;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  border-radius: 2em;
+  background: var(--light-gray);
+  /*border: 2px solid var(--primary);*/
+  border: none;
+  color: var(--secondary);
+  /*border-radius: 2em;*/
   padding: 18px 22px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -1041,8 +1042,8 @@ footer {
 .service-pill.active,
 .service-pill:hover {
   background: var(--dark);
-  color: #fff;
-  border-color: var(--accent);
+  color: var(--accent);
+  /*border-color: var(--accent);*/
   box-shadow: 0 4px 16px rgba(247, 37, 133, 0.10);
 }
 
@@ -1066,14 +1067,14 @@ footer {
   transition: box-shadow 0.2s, transform 0.2s;
   min-height: 220px;
   text-align: center;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   width: 75%;
   margin: 0 auto;
 }
 
 .service-mini-card.active,
 .service-mini-card:hover {
-  border-color: var(--primary);
+  border-color: var(--dark);
   box-shadow: 0 8px 24px rgba(67, 97, 238, 0.18);
   transform: translateY(-6px) scale(1.03);
 }

@@ -63,7 +63,7 @@ animatedElements.forEach(el => {
 });
 
 document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', function(e) {
+  card.addEventListener('click', function (e) {
     // Evita que se despliegue si se hace click en un enlace dentro de la card
     if (e.target.tagName === 'A') return;
     card.classList.toggle('open');
@@ -81,7 +81,7 @@ const servicesData = [
     key: "paginas",
     icon: "fas fa-file-alt",
     title: "Páginas",
-    desc: "Cada página está diseñada para contener hasta cuatro secciones, cada página se dedica a presentar una parte clave de la información del negocio."
+    desc: "Cada página está diseñada para contener las secciones que sean necesarias, cada página contiene una parte clave de la información del negocio."
   },
   {
     key: "secciones",
@@ -93,31 +93,31 @@ const servicesData = [
     key: "productos",
     icon: "fas fa-box",
     title: "Productos",
-    desc: "La cantidad de productos que indique el pack elegido, serán precargados antes del despliegue."
+    desc: "Antes del despliegue de la página web, precargaremos la cantidad de productos correspondiente al pack elegido, asegurando que la tienda esté lista para operar"
   },
   {
     key: "seo",
     icon: "fas fa-search",
     title: "SEO",
-    desc: "Optimización para motores de búsqueda para aumentar tu visibilidad y atraer más clientes potenciales."
+    desc: "Optimizamos tu sitio web para motores de búsqueda mediante técnicas avanzadas de SEO. Esto mejora su visibilidad en Google y otros buscadores."
   },
   {
     key: "multidispositivos",
     icon: "fas fa-mobile-alt",
     title: "Multidispositivos",
-    desc: "Diseño responsive que se adapta perfectamente a cualquier dispositivo: móvil, tablet o escritorio."
+    desc: "Ofrecemos un diseño responsive que garantiza una experiencia óptima en cualquier dispositivo. Se adaptará automáticamente a móviles, tablets y escritorios."
   },
   {
     key: "hosting",
     icon: "fas fa-server",
     title: "Hosting",
-    desc: "Instalación y alojamiento web de alto rendimiento con soporte técnico 24/7."
+    desc: "Ofrecemos instalación y alojamiento web en AWS, garantizando alto rendimiento y estabilidad asegurando un funcionamiento sin interrupciones."
   },
   {
     key: "mantenimiento",
     icon: "fas fa-tools",
     title: "Mantenimiento",
-    desc: "Copias de seguridad y solución de problemas para mantener tu sitio siempre funcionando."
+    desc: "Mientras estemos a cargo del Hosting realizamos copias de seguridad para proteger tu sitio ante cualquier problema y evitar pérdida de datos."
   }
 ];
 
@@ -139,7 +139,7 @@ renderServiceCards();
 
 // Lógica de tabs
 document.querySelectorAll('.service-pill').forEach(pill => {
-  pill.addEventListener('click', function() {
+  pill.addEventListener('click', function () {
     document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('active'));
     this.classList.add('active');
     renderServiceCards(this.dataset.service);

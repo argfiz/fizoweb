@@ -85,7 +85,7 @@ section {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: var(--dark);
+  background-color: #7209b7;
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -493,7 +493,7 @@ font-size: x-large;
   transform: translateX(-50%);
   width: 50px;
   height: 3px;
-  background-color: var(--primary-dark);
+  background-color: var(--dark);
 }
 
 .container {
@@ -1067,7 +1067,7 @@ footer {
   flex-direction: column;
   align-items: center;
   transition: box-shadow 0.2s, transform 0.2s;
-  min-height: 220px;
+  min-height: 180px;
   text-align: center;
   border: 1px solid transparent;
   width: 75%;
@@ -1085,7 +1085,7 @@ footer {
 
 .service-mini-card i {
   font-size: 2.2rem;
-  color: var(--primary);
+  color: var(--gray);
   margin-bottom: 10px;
 }
 
@@ -1093,7 +1093,7 @@ footer {
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .service-mini-card p {

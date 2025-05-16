@@ -1,6 +1,6 @@
 :root {
-  --primary: #4361ee;
-  --primary-dark: #3a56d4;
+  /*--primary: #4361ee;
+  --primary-dark: #3a56d4;*/
   --secondary: #7209b7;
   --accent: #f72585;
   --light: #f8f9fa;
@@ -115,7 +115,7 @@ section {
 }
 
 .nav-links a {
-  color : white;
+  color: white;
   font-weight: 600;
   position: relative;
   transition: var(--transition);
@@ -179,7 +179,7 @@ section {
   display: block;
   height: 3px;
   width: 100%;
-  background-color: var(--dark);
+  background-color: var(--light);
   border-radius: 3px;
   transition: var(--transition);
 }
@@ -189,7 +189,7 @@ section {
   padding-top: 150px;
   padding-bottom: 0px;
   min-height: auto;
-  background: linear-gradient(180deg,rgba(248, 249, 250, 0.4) 0%, rgba(233, 236, 239, 1) 100%);
+  background: linear-gradient(180deg, rgba(248, 249, 250, 0.4) 0%, rgba(233, 236, 239, 1) 100%);
 }
 
 .hero-container {
@@ -233,8 +233,8 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
- padding-top: 40px;
- padding-bottom: 25px;
+  padding-top: 40px;
+  padding-bottom: 25px;
 
 }
 
@@ -242,12 +242,13 @@ section {
   background-color: white;
   box-shadow: var(--box-shadow);
   transition: var(--transition);
-  border-radius: 50px 0px 50px 0px; 
-  border: 1px solid var(--dark);
-  height: fit-content;   
+  border-radius: 50px 0px 50px 0px;
+  /*border: 1px solid var(--dark);*/
+  height: fit-content;
   cursor: pointer;
   overflow: hidden;
-  transition: box-shadow 0.3s;                                         ;
+  transition: box-shadow 0.3s;
+  ;
 }
 
 .card:hover {
@@ -264,21 +265,21 @@ section {
   position: relative;
   overflow: hidden;
   text-align: right;
-  background: var(--primary); /* fallback */
+  background: var(--primary);
+  /* fallback */
 }
 
 /* Fondo para la primera tarjeta (izquierda) */
-.cards-container .card:nth-child(1) .card-header {
-  background:
-    linear-gradient(120deg, #ffbe0b 0%, #fb5607 100%);
+.cards-container .card:nth-child(1) .card-header  {
+  background: linear-gradient(135deg, #111 0%, var(--accent) 90%);
+  color: white;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(255, 190, 11, 0.15);
 }
 
 /* Fondo para la segunda tarjeta (centro) */
 .cards-container .card:nth-child(2) .card-header {
-  background:
-    linear-gradient(120deg, #3a86ff 0%, #4361ee 100%);
+  background: linear-gradient(135deg, #111 0%, var(--secondary) 90%);
   color: #fff;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(58, 134, 255, 0.15);
@@ -286,12 +287,31 @@ section {
 
 /* Fondo para la tercera tarjeta (derecha) */
 .cards-container .card:nth-child(3) .card-header {
-  background:
-    linear-gradient(120deg, #8338ec 0%, #f72585 100%);
+  background: linear-gradient(135deg, #111 0%, var(--gray) 90%);
   color: #fff;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(131, 56, 236, 0.15);
 }
+
+/* Asigna el mismo fondo del card-header al card-price-container según el pack */
+
+/* Primer pack */
+.cards-container .card:nth-child(1) .card-price-container {
+  background: linear-gradient(135deg, #111 0%, var(--accent) 90%);
+}
+
+/* Segundo pack */
+.cards-container .card:nth-child(2) .card-price-container {
+  background: linear-gradient(135deg, #111 0%, var(--secondary) 90%);
+}
+
+/* Tercer pack */
+.cards-container .card:nth-child(3) .card-price-container {
+  background: linear-gradient(135deg, #111 0%, var(--gray) 90%);
+}
+
+
+
 
 .card-header h2 {
   font-size: 2.4rem;
@@ -324,7 +344,7 @@ section {
 .card-header p {
   font-size: 1.4rem;
   font-weight: 500;
-  background: rgba(255,255,255,0.13);
+  background: rgba(255, 255, 255, 0.13);
   padding: 4px 8px;
   border-radius: 1em 0 1em 0;
   display: inline-block;
@@ -340,12 +360,14 @@ section {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+  transition: max-height 0.5s cubic-bezier(.4, 0, .2, 1), opacity 0.3s;
 }
+
 .card.open .card-content {
-  max-height: 800px; /* suficiente para el contenido, ajusta si es necesario */
+  max-height: 800px;
+  /* suficiente para el contenido, ajusta si es necesario */
   opacity: 1;
-  transition: max-height 0.7s cubic-bezier(.4,0,.2,1), opacity 0.4s;
+  transition: max-height 0.7s cubic-bezier(.4, 0, .2, 1), opacity 0.4s;
 }
 
 
@@ -375,7 +397,6 @@ section {
 .card-price-container {
   text-align: center;
   background: var(--dark);
-  color: #fff;
   padding: 22px 28px 18px 28px;
   width: 100%;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
@@ -421,7 +442,7 @@ section {
   transition: var(--transition);
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
   max-width: 350px;
 }
 
@@ -429,10 +450,12 @@ section {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
-.title-service-container{
+
+.title-service-container {
   display: flex;
   gap: 25px;
 }
+
 .mini-card .image-container {
   overflow: hidden;
   width: 100px;
@@ -451,8 +474,8 @@ section {
 }
 
 
-.mini-card .card-header h2{
-font-size: x-large;
+.mini-card .card-header h2 {
+  font-size: x-large;
 }
 
 .mini-card p {
@@ -464,19 +487,22 @@ font-size: x-large;
 
 /* ========== PRODUCT SECTION ======== */
 #product {
-  background-color: var(--light-gray);
+  background: linear-gradient(120deg, #f8f9fa 0%, var(--light-gray) 40%, #fff 100%);
 }
+
 #product .image-container {
   min-width: 275px;
   max-width: 300px;
-  
+
 }
-#product .image-container img{
+
+#product .image-container img {
   height: 275px;
 }
+
 .title-container {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .title-container h1 {
@@ -485,8 +511,9 @@ font-size: x-large;
   color: var(--accent);
   position: relative;
   display: inline-block;
-  padding-top: 25px;
+  padding-top: 20px;
 }
+
 .title-container h2 {
   font-size: 2.2rem;
   font-weight: 700;
@@ -507,10 +534,12 @@ font-size: x-large;
   background-color: var(--dark);
 }
 
-#product .container{
+#product .container {
   display: flex;
   align-items: flex-start;
-  
+  justify-content: center;
+
+
 }
 
 .text-container {
@@ -523,10 +552,12 @@ font-size: x-large;
   min-width: 300px;
   max-width: 800px;
 }
+
 .text-container h2 {
   font-size: 1.5rem;
   color: var(--secondary);
 }
+
 .text-container p {
   font-size: 1.1rem;
   color: var(--dark);
@@ -549,7 +580,7 @@ font-size: x-large;
   left: 0;
   width: 100%;
   height: 100%;
- 
+
   z-index: 0;
 }
 
@@ -654,6 +685,7 @@ font-size: x-large;
   background-color: var(--light);
   padding: 40px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
 .contact-form h2 {
@@ -664,7 +696,7 @@ font-size: x-large;
 }
 
 .form-group {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   position: relative;
 }
 
@@ -724,7 +756,7 @@ font-size: x-large;
 footer {
   background: linear-gradient(90deg, var(--dark) 0%, var(--secondary) 100%);
   color: #fff;
-  padding: 40px 0 0 0;
+  padding: 20px 0 0 0;
   font-size: 1rem;
 }
 
@@ -740,6 +772,7 @@ footer {
   flex-wrap: wrap;
 
 }
+
 .footer-brand {
   display: flex;
   align-items: center;
@@ -756,11 +789,13 @@ footer {
   background: #fff;*/
   padding: 4px;
 }
+
 .footer-links {
   display: flex;
   gap: 28px;
   flex-wrap: wrap;
 }
+
 .footer-container .footer-brand .footer-links a {
   font-size: 1rem;
 }
@@ -772,6 +807,7 @@ footer {
   transition: color 0.2s;
   position: relative;
 }
+
 .footer-links a::after {
   content: '';
   display: block;
@@ -787,6 +823,7 @@ footer {
 .footer-links a:hover {
   color: var(--accent);
 }
+
 .footer-links a:hover::after {
   width: 100%;
 }
@@ -806,6 +843,7 @@ footer {
   color: var(--accent);
   transform: scale(1.15);
 }
+
 .footer-copy {
   font-size: 0.95rem;
   color: #e0e0e0;
@@ -815,19 +853,23 @@ footer {
   width: 100%;
   background: none;
 }
+
 /* === ANIMATIONS === */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.hero-container, .card, .mini-card {
+.hero-container,
+.card,
+.mini-card {
   animation: fadeIn 0.8s ease forwards;
 }
 
@@ -860,11 +902,9 @@ footer {
   .hero-container h1 {
     font-size: 2.8rem;
   }
-  
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-  
+
+
+
   section {
     padding: 60px 0;
   }
@@ -876,12 +916,12 @@ footer {
   #navbar {
     padding: 15px 20px;
   }
-  
+
   .hamburger {
     display: flex;
     z-index: 1001;
   }
-  
+
   .nav-menu {
     position: fixed;
     top: 0;
@@ -895,12 +935,13 @@ footer {
     align-items: center;
     justify-content: center;
   }
-  
+
   .nav-menu.active {
     right: 0;
   }
+
   .nav-menu a {
-  color: var(--dark);
+    color: var(--dark);
   }
 
   .nav-links {
@@ -908,23 +949,23 @@ footer {
     align-items: center;
     gap: 20px;
   }
-  
+
   .navbar-social-button {
     display: none;
   }
-  
+
   .hero-container h1 {
     font-size: 2.2rem;
   }
-  
+
   .hero-container h2 {
     font-size: 1rem;
   }
-  
+
   .cards-container {
     grid-template-columns: 1fr;
   }
-  
+
   #home {
     padding-top: 120px;
   }
@@ -933,12 +974,19 @@ footer {
     gap: 18px;
     padding: 0 10px;
   }
+
   .footer-links {
     gap: 16px;
     font-size: 0.98rem;
   }
+
   .footer-brand {
     font-size: 1.2rem;
+  }
+
+  .contact-container {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -946,35 +994,36 @@ footer {
   .hero-container h1 {
     font-size: 1.8rem;
   }
-  
+
   .card-header h2 {
     font-size: 1.3rem;
   }
-  
+
   .card-price {
     font-size: 1.5rem;
   }
-  
+
   .title-container p {
     font-size: 1.5rem;
   }
-  
+
   section {
     padding: 40px 0;
   }
-  
+
   .navbar-logo img {
     height: 30px;
   }
-  
+
   .navbar-logo span {
     font-size: 1.2rem;
   }
-  
+
   .contact-info,
   .contact-form {
     padding: 20px;
   }
+
   .footer-container {
     flex-direction: column;
     align-items: center;
@@ -987,6 +1036,7 @@ footer {
 /* === HAMBURGER ANIMATION === */
 .hamburger.active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
+  background-color: var(--dark);
 }
 
 .hamburger.active span:nth-child(2),
@@ -996,6 +1046,7 @@ footer {
 
 .hamburger.active span:nth-child(4) {
   transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--dark);
 }
 
 
@@ -1005,7 +1056,7 @@ footer {
 .services-gallery {
   width: 100%;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .services-tabs {
@@ -1051,27 +1102,20 @@ footer {
 }
 
 .services-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0px;
 }
 
 .service-mini-card {
   background: #fff;
-  border-radius: 0px;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
-  padding: 28px 22px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: box-shadow 0.2s, transform 0.2s;
   min-height: 180px;
   text-align: center;
-  border: 1px solid transparent;
   width: 75%;
   margin: 0 auto;
   margin-bottom: 15px;
@@ -1108,31 +1152,42 @@ footer {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+
   .services-tabs {
     gap: 10px;
     flex-wrap: wrap;
   }
+
   .service-pill span {
     display: none;
   }
+
+  .service-mini-card {
+    width: 90%;
+  }
 }
+
 @media (min-width: 900px) {
   .service-mini-card.active {
     transform: scale(1.13);
     box-shadow: 0 12px 32px rgba(67, 97, 238, 0.18);
     z-index: 2;
   }
+
   .service-mini-card.active i {
     font-size: 3rem;
     margin-bottom: 14px;
   }
+
   .service-mini-card.active h3 {
     font-size: 1.7rem;
   }
+
   .service-mini-card.active p {
     font-size: 1.3rem;
   }
-  .contact-form{
+
+  .contact-form {
     max-width: 500px
   }
 }

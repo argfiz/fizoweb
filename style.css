@@ -474,7 +474,7 @@ font-size: x-large;
 
 .title-container {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 
 .title-container p {
@@ -1066,6 +1066,8 @@ footer {
   min-height: 220px;
   text-align: center;
   border: 2px solid transparent;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .service-mini-card.active,
@@ -1101,5 +1103,22 @@ footer {
   .services-tabs {
     gap: 10px;
     flex-wrap: wrap;
+  }
+}
+@media (min-width: 900px) {
+  .service-mini-card.active {
+    transform: scale(1.13);
+    box-shadow: 0 12px 32px rgba(67, 97, 238, 0.18);
+    z-index: 2;
+  }
+  .service-mini-card.active i {
+    font-size: 3rem;
+    margin-bottom: 14px;
+  }
+  .service-mini-card.active h3 {
+    font-size: 1.8rem;
+  }
+  .service-mini-card.active p {
+    font-size: 1.5rem;
   }
 }

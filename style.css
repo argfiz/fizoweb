@@ -230,11 +230,13 @@ section {
 
 /* === CARDS === */
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  align-content: flex-start;
+  justify-content: center;
   gap: 25px;
   padding-top: 40px;
   padding-bottom: 25px;
+  flex-wrap: wrap
 
 }
 
@@ -248,7 +250,8 @@ section {
   cursor: pointer;
   overflow: hidden;
   transition: box-shadow 0.3s;
-  ;
+  max-width: 300px;
+  min-width: 300px;
 }
 
 .card:hover {

@@ -1,4 +1,6 @@
-/*******************GALLERY product**********************/
+/*****************************************************************************************************/
+/* ========================================== PRODUCT GALLERY ====================================== */
+/*****************************************************************************************************/
 const productData = [
   {
     title: "SEO",
@@ -11,7 +13,7 @@ const productData = [
     imageFirst: false
   },
   {
-    title: "Ligero",
+    title: "LIGERO",
     paragraphs: [
       "Creamos páginas rápidas, funcionales y optimizadas al evitar elementos innecesarios como frameworks superfluos. Esto asegura tiempos de carga rápidos, una experiencia de usuario superior y fácil mantenimiento",
       "¡Menos es más!"
@@ -21,7 +23,7 @@ const productData = [
     imageFirst: true
   },
   {
-    title: "Eficiencia",
+    title: "EFICIENTE",
     paragraphs: [
       "Nuestro código, limpio y modular, asegura rendimiento, estabilidad y escalabilidad. Aplicamos estándares actuales y optimizamos recursos, logrando velocidad y facilidad de mantenimiento",
       "¡Eficiencia y calidad que marcan la diferencia!"
@@ -31,9 +33,9 @@ const productData = [
     imageFirst: false
   },
   {
-    title: "Rendimiento",
+    title: "CALIDAD",
     paragraphs: [
-      "Optimizamos constantemente el código y los recursos, mejorando así la velocidad, la eficiencia, la satisfacción del usuario y el posicionamiento en motores de búsqueda.",
+      "Optimizamos constantemente el código y los recursos, mejorando así la velocidad, y la eficiencia. Esto asegura una experiencia fluida para los usuarios al interactuar  ",
       "Rapido, estable, capacidad de respuesta y compatibilidad."
     ],
     image: "./assets/tuerca-barras.jpeg",
@@ -80,8 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-/***************MENU HAMBURGUER****************/
+/*****************************************************************************************************/
+/* ========================================== MENU HAMBURGUER ====================================== */
+/*****************************************************************************************************/
 // Seleccionar elementos del DOM
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
@@ -104,15 +107,16 @@ navLinks.forEach(link => {
 
 
 
-
-/***************************NAVBAR*************************/
+/*****************************************************************************************************/
+/* ============================================ NAVBAR ============================================= */
+/*****************************************************************************************************/
 // Cambiar estilo del navbar al hacer scroll
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    navbar.style.padding = '5px 30px';
+    navbar.style.padding = '10px 30px';
     navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
   } else {
-    navbar.style.padding = '15px 30px';
+    navbar.style.padding = '20px 30px';
     navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
   }
 });
@@ -125,7 +129,9 @@ const observerOptions = {
 
 
 
-/*************************PACK ANIMATION***************************/
+/*****************************************************************************************************/
+/* ========================================== PACK ANIMATION ====================================== */
+/*****************************************************************************************************/
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -155,8 +161,10 @@ document.querySelectorAll('.card').forEach(card => {
 
 
 
+/*****************************************************************************************************/
+/* ======================================== GALLERY SERVICES ======================================= */
+/*****************************************************************************************************/
 
-/*******************GALLERY SERVICE**********************/
 const servicesData = [
   {
     key: "paginas",

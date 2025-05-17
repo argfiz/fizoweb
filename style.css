@@ -55,7 +55,17 @@ section { padding: 80px 0; }
   height: 100px;
 }
 
-/* === NAVBAR === */
+
+
+
+
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/* ========================================= NAVBAR ================================================ */
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
 #navbar {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -98,7 +108,17 @@ section { padding: 80px 0; }
   border-radius: 3px; transition: var(--transition);
 }
 
-/* === HOME SECTION === */
+
+
+
+
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/* ========================================= HOME SECTION ===========================================*/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
 #home {
   padding-top: 150px; padding-bottom: 0px; min-height: auto;
   background: linear-gradient(180deg, rgba(248,249,250,0.4) 0%, rgba(233,236,239,1) 100%);
@@ -116,7 +136,17 @@ section { padding: 80px 0; }
   font-size: 1.6rem; font-weight: 700; color: var(--gray); max-width: 800px; margin: 0 auto;
 }
 
-/* === CARDS === */
+
+
+
+
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/* ========================================= PACK CARDS =============================================*/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
+/*****************************************************************************************************/
 .cards-container {
   display: flex;
   align-content: flex-start;
@@ -152,6 +182,8 @@ section { padding: 80px 0; }
   text-align: right;
   background: var(--primary);
 }
+
+/* Fondos para header-container */
 .cards-container .card:nth-child(1) .card-header {
   background: linear-gradient(135deg, #363636 0%, var(--accent) 90%);
   color: white;
@@ -170,6 +202,7 @@ section { padding: 80px 0; }
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(131,56,236,0.15);
 }
+
 /* Fondos para price-container */
 .cards-container .card:nth-child(1) .card-price-container {
   background: linear-gradient(135deg, #363636 0%, var(--accent) 90%);
@@ -180,6 +213,7 @@ section { padding: 80px 0; }
 .cards-container .card:nth-child(3) .card-price-container {
   background: linear-gradient(135deg, #111 0%, var(--gray) 90%);
 }
+
 .card-header h2 {
   font-size: 2.4rem;
   font-weight: 800;
@@ -360,7 +394,7 @@ section { padding: 80px 0; }
   color: var(--light-gray);
   box-shadow: 0 4px 16px rgba(247,37,133,0.10);
 }
-.services-cards { width: 100%; max-width: 1200px; }
+.services-cards { width: 100%; max-width: 1200px; margin-top: 50px; }
 .service-mini-card {
   background: #fff;
   box-shadow: 0 4px 18px rgba(67,97,238,0.10);
@@ -412,16 +446,15 @@ section { padding: 80px 0; }
 }
 #product .image-container { min-width: 275px; max-width: 300px; }
 #product .image-container img { height: 275px; }
-.title-container { text-align: center; margin-bottom: 40px; }
+.title-container { text-align: center; margin-bottom: 20px; }
 .title-container h1, .title-container h2 {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--accent);
   position: relative;
   display: inline-block;
-  padding-top: 15px;
 }
-.title-container h1 { padding-top: 40px; }
+.title-container h1 { padding-top: 50px; }
 .title-container p::after {
   content: '';
   position: absolute;
@@ -442,25 +475,26 @@ section { padding: 80px 0; }
   min-width: 300px;
   max-width: 800px;
 }
-.text-container h2 { font-size: 1.5rem; color: var(--secondary); }
+#product .text-container h2 { font-size: 1.5rem; color: var(--accent); }
 .text-container p { font-size: 1.1rem; color: var(--dark); }
 #product .main-container { padding: 0; }
 #product .title-container h1 {
   margin-top: 15px;
   margin-bottom: 20px; 
-  color: var(--accent);
+  color: var(--light-gray);
   position: relative;
   display: inline-block;
 }
-#product .title-container h1::after {
+/* Largo del subrayado *//* Grosor del subrayado */ 
+/*#product .title-container h1::after {
   content: '';
   display: block;
   margin: 20px auto 0 auto;
-  width: 60px;           /* Largo del subrayado */
-  height: 4px;           /* Grosor del subrayado */
-  background: var(--light-gray);
+  width: 60px;       
+  height: 4px;           
+  background: var(--accent);
   border-radius: 2px;
-}
+}*/
 
 /* === PRODUCT DETAIL ROWS === */
 .product-detail-row {
@@ -594,6 +628,7 @@ section { padding: 80px 0; }
 .contact-form {
   background-color: var(--light);
   padding: 40px;
+  padding-top: 55px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   width: 100%;
 }
@@ -748,10 +783,6 @@ footer {
 
 
 
-
-
-
-
 /*****************************************************************************************************/
 /*****************************************************************************************************/
 /*****************************************************************************************************/
@@ -849,11 +880,11 @@ footer {
     display: block;
   }
   #product .title-container h1 { 
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-top: 25px; 
   }
   #product .product-detail-row .text-container h2 { 
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-top: 8px; 
   }
   #product .product-detail-row .text-container {
@@ -904,8 +935,7 @@ footer {
   }
   #product .title-container h1 { font-size: 1.8rem; padding-top: 20px; }
   #product .product-detail-row .text-container h2 { 
-    font-size: 1.8rem;
-    margin-top: 8px; 
+    font-size: 1.5rem;
   }
   #product .product-detail-row .text-container {
     align-items: center;
@@ -937,6 +967,9 @@ footer {
   #services .service-mini-card p  { font-size: 1.4rem; }
   #services .services-cards .service-mini-card { height: 210px; }
   .contact-form { max-width: 500px; }
+  #product .product-detail-row .text-container h2 { 
+    font-size: 2rem;
+  }
 }
 
 

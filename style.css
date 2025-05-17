@@ -233,10 +233,9 @@ section {
   display: flex;
   align-content: flex-start;
   justify-content: center;
-  gap: 25px;
+  gap: 15px;
   padding-top: 40px;
   padding-bottom: 25px;
-  flex-wrap: wrap
 
 }
 
@@ -250,8 +249,8 @@ section {
   cursor: pointer;
   overflow: hidden;
   transition: box-shadow 0.3s;
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 275px;
+  min-width: 275px;
 }
 
 .card:hover {
@@ -400,7 +399,8 @@ section {
 .card-price-container {
   text-align: center;
   background: var(--dark);
-  padding: 22px 28px 18px 28px;
+  padding: 10px 0px;
+  padding-bottom: 20px;
   width: 100%;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
   position: relative;
@@ -409,7 +409,7 @@ section {
 }
 
 .card-price {
-  font-size: 2.3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0.1em;
@@ -420,14 +420,13 @@ section {
 }
 
 .card-price-container span {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 600;
   display: inline-block;
   z-index: 1;
   position: relative;
-  letter-spacing: 3px;
+  letter-spacing: -1px;
   box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
-  margin-top: -6px;
   color: #fff;
 }
 

@@ -1,3 +1,85 @@
+/*******************GALLERY product**********************/
+const productData = [
+  {
+    title: "SEO",
+    paragraphs: [
+      "El SEO (Optimización para Motores de Búsqueda) es clave para destacar tu página en búsquedas, utilizando palabras clave relevantes, contenido valioso y una estructura optimizada.",
+      "¡El SEO impulsa tu éxito online!"
+    ],
+    image: "./assets/lupa.png",
+    imageAlt: "Imagen del producto",
+    imageFirst: false
+  },
+  {
+    title: "Ligero",
+    paragraphs: [
+      "Creamos páginas rápidas, funcionales y optimizadas al evitar elementos innecesarios como frameworks superfluos. Esto asegura tiempos de carga rápidos, una experiencia de usuario superior y fácil mantenimiento",
+      "¡Menos es más!"
+    ],
+    image: "./assets/pluma.jpeg",
+    imageAlt: "Imagen del producto",
+    imageFirst: true
+  },
+  {
+    title: "Eficiencia",
+    paragraphs: [
+      "Nuestro código, limpio y modular, asegura rendimiento, estabilidad y escalabilidad. Aplicamos estándares actuales y optimizamos recursos, logrando velocidad y facilidad de mantenimiento",
+      "¡Eficiencia y calidad que marcan la diferencia!"
+    ],
+    image: "./assets/tuerca.jpeg",
+    imageAlt: "Imagen del producto",
+    imageFirst: false
+  },
+  {
+    title: "Rendimiento",
+    paragraphs: [
+      "Optimizamos constantemente el código y los recursos, mejorando así la velocidad, la eficiencia, la satisfacción del usuario y el posicionamiento en motores de búsqueda.",
+      "Rapido, estable, capacidad de respuesta y compatibilidad."
+    ],
+    image: "./assets/tuerca-barras.jpeg",
+    imageAlt: "Imagen del producto",
+    imageFirst: true
+  }
+];
+
+function renderProductDetails() {
+  // Busca el contenedor solo si existe en la página actual
+  const container = document.querySelector('#product .main-container');
+  if (!container) return;
+  container.innerHTML = productData.map(item => `
+    <div class="product-detail-row">
+      ${item.imageFirst ? `
+        <div class="image-container">
+          <img src="${item.image}" alt="${item.imageAlt}">
+        </div>
+        <div class="text-container">
+          <h2>${item.title}</h2>
+          <p>${item.paragraphs[0]}</p>
+          <p>${item.paragraphs[1]}</p>
+        </div>
+      ` : `
+        <div class="text-container">
+          <h2>${item.title}</h2>
+          <p>${item.paragraphs[0]}</p>
+          <p>${item.paragraphs[1]}</p>
+        </div>
+        <div class="image-container">
+          <img src="${item.image}" alt="${item.imageAlt}">
+        </div>
+      `}
+    </div>
+  `).join('');
+}
+document.addEventListener('DOMContentLoaded', function() {
+  renderProductDetails();
+});
+
+
+
+
+
+
+
 
 /***************MENU HAMBURGUER****************/
 // Seleccionar elementos del DOM
@@ -73,9 +155,8 @@ document.querySelectorAll('.card').forEach(card => {
 
 
 
-/*******************GALLERY**********************/
 
-
+/*******************GALLERY SERVICE**********************/
 const servicesData = [
   {
     key: "paginas",
@@ -147,4 +228,9 @@ document.querySelectorAll('.service-pill').forEach(pill => {
     renderServiceCards(this.dataset.service);
   });
 });
+
+
+
+
+
 

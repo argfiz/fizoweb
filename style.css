@@ -1,7 +1,7 @@
 /* ================= VARIABLES ================ */
 :root {
   --secondary: #7209b7;
-  --secundary-dark: #5a0792;
+  --secondary-dark: #5a0792;
   --accent: #f72585;
   --light: #f8f9fa;
   --dark: #212529;
@@ -56,7 +56,12 @@ section { padding: 80px 0; }
   height: 100px;
 }
 
+
+
+
+/*****************************************************************************************************/
 /* ========================================= NAVBAR ================================================ */
+/*****************************************************************************************************/
 #navbar {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -75,7 +80,7 @@ section { padding: 80px 0; }
 .nav-links a {
   color: white; font-weight: 600; position: relative; transition: var(--transition);
 }
-.nav-links a:hover { color: var(--dark); }
+.nav-links a:hover { color: white; }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
   background-color: var(--accent); transition: var(--transition);
@@ -275,7 +280,7 @@ section { padding: 80px 0; }
 
 /* =================================== SECTION SERVICES ============================================ */
 #services { 
-  background: linear-gradient(180deg, white 45%, var(--secundary-dark) 45%);
+  background: linear-gradient(180deg, white 45%, var(--secondary-dark) 45%);
   padding: 0px; 
 }
 #services .title-container {
@@ -665,13 +670,13 @@ footer {
 /* ================================== HAMBURGER ANIMATION=========================================== */
 .hamburger.active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
-  background-color: var(--dark);
+  background-color: var(--light-gray);
 }
 .hamburger.active span:nth-child(2),
 .hamburger.active span:nth-child(3) { opacity: 0; }
 .hamburger.active span:nth-child(4) {
   transform: translateY(-8px) rotate(-45deg);
-  background-color: var(--dark);
+  background-color: var(--light-gray);
 }
 
 /* ======================================== RESPONSIVE ============================================= */
@@ -689,18 +694,19 @@ footer {
   .hamburger { display: flex; z-index: 1001; }
   .nav-menu {
     position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-    background-color: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    background-color: #381954; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     transition: var(--transition); display: flex; align-items: center; justify-content: center;
   }
+  .card-header h2 { font-size: 2rem; }
   .service-mini-card.active { width: 90%; }
   #services .service-mini-card p  { font-size: 1.2rem; }
   .nav-menu.active { right: 0; }
-  .nav-menu a { color: var(--dark); }
+  .nav-menu a { color: var(--light); }
   .nav-links { flex-direction: column; align-items: center; gap: 20px; }
   .navbar-social-button { display: none; }
-  .hero-container h1 { font-size: 2.2rem; }
-  .hero-container h2 { font-size: 1rem; }
-  .cards-container { grid-template-columns: 1fr; }
+  .hero-container h1 { font-size: 2rem; }
+  .hero-container h2 { font-size: 1.4rem; }
+  .cards-container { grid-template-columns: 1fr; padding-top: 0px }
   #home { padding-top: 120px; }
   .footer-container { gap: 18px; padding: 0 10px; }
   .footer-links { gap: 16px; font-size: 0.98rem; }
@@ -709,6 +715,10 @@ footer {
 }
 
 @media (max-width: 700px) {
+  .hero-container h1 { font-size: 2rem; }
+  .hero-container h2 { font-size: 1.4rem; }
+  .cards-container {padding-top: 0px;}
+  .card-header h2 { font-size: 2rem; }
   .services-cards { grid-template-columns: 1fr; gap: 18px; }
   .services-tabs { gap: 10px; flex-wrap: wrap; }
   .service-pill span { display: none; }
@@ -768,8 +778,10 @@ footer {
 }
 
 @media (max-width: 550px) {
-  .hero-container h1 { font-size: 1.8rem; }
-  .card-header h2 { font-size: 1.3rem; }
+  .hero-container h1 { font-size: 2rem; }
+  .hero-container h2 { font-size: 1.4rem; }
+  .cards-container {padding-top: 0px;}
+  .card-header h2 { font-size: 2rem; }
   .card-price { font-size: 1.5rem; }
   .title-container p { font-size: 1.5rem; }
   section { padding: 40px 0; }

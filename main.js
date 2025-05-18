@@ -200,7 +200,7 @@ const servicesData = [
     key: "hosting",
     icon: "fas fa-server",
     title: "Hosting",
-    desc: "Ofrecemos instalación y alojamiento web en AWS, garantizando alto rendimiento y estabilidad asegurando un funcionamiento sin interrupciones."
+    desc: "Ofrecemos instalación y alojamiento web en AWS, garantizando alto rendimiento y estabilidad asegurando su funcionamiento."
   },
   {
     key: "mantenimiento",

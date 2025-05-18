@@ -157,35 +157,35 @@ section { padding: 80px 0; }
   text-align: right;
 }
 .cards-container .card:nth-child(1) .card-header {
-  background: linear-gradient(180deg, #1d1d1d 0%, var(--accent) 100%);
+  background: #d4357c;
   color: white;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(255,190,11,0.15);
 }
 .cards-container .card:nth-child(2) .card-header {
-  background: linear-gradient(180deg, #1d1d1d 0%, var(--secondary) 100%);
+  background: var(--secondary);
   color: #fff;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(58,134,255,0.15);
 }
 .cards-container .card:nth-child(3) .card-header {
-  background: linear-gradient(180deg, #1d1d1d 0%, var(--gray) 100%);
+  background: #4c4c4c;
   color: #fff;
   border-radius: 45px 0 50px 0;
   box-shadow: 0 4px 18px rgba(131,56,236,0.15);
 }
 .cards-container .card:nth-child(1) .card-price-container {
-  background: var(--accent);
+  background: #d4357c;
 }
 .cards-container .card:nth-child(2) .card-price-container {
   background: var(--secondary);
 }
 .cards-container .card:nth-child(3) .card-price-container {
-  background: var(--gray);
+  background: #4c4c4c;
 }
 .card-header h2 {
-  font-size: 2.4rem;
-  font-weight: 800;
+  font-size: 2.2rem;
+  font-weight: 700;
   letter-spacing: 2px;
   z-index: 1;
   position: relative;
@@ -627,7 +627,7 @@ footer {
 .footer-logo { height: 50px; width: auto;margin-bottom: 15px;}
 .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
 .footer-links a {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #fff;
   text-decoration: none;
   font-weight: 500;
@@ -785,8 +785,9 @@ footer {
   .card-price { font-size: 1.5rem; }
   .title-container p { font-size: 1.5rem; }
   section { padding: 40px 0; }
+  #navbar {  }
   .navbar-logo img { height: 30px; }
-  .navbar-logo span { font-size: 1.2rem; }
+  .navbar-logo span { font-size: 1.6rem; }
   .contact-info, .contact-form { padding: 20px; }
   .footer-container { flex-direction: column; align-items: center; gap: 18px; padding: 0 10px; text-align: center; }
   .service-mini-card.active { width: 100%; height: 280px; }

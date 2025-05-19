@@ -619,7 +619,7 @@ footer {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -785,7 +785,6 @@ footer {
   .card-price { font-size: 1.5rem; }
   .title-container p { font-size: 1.5rem; }
   section { padding: 40px 0; }
-  #navbar {  }
   .navbar-logo img { height: 30px; }
   .navbar-logo span { font-size: 1.6rem; }
   .contact-info, .contact-form { padding: 20px; }

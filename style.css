@@ -109,6 +109,19 @@ section { padding: 80px 0; }
   padding-top: 150px; padding-bottom: 0px; min-height: auto;
   background: linear-gradient(135deg, white 0%, var(--light-gray) 100%);
 }
+#home .title-container{
+  margin-bottom: 0px;
+}
+#home .title-container h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  width: 90%;
+}
 .hero-container { text-align: center; margin-bottom: 60px; }
 .hero-container h1 {
   font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2; color: var(--dark)
@@ -128,7 +141,7 @@ section { padding: 80px 0; }
   align-content: flex-start;
   justify-content: center;
   gap: 25px;
-  padding: 40px 0;
+  padding: 0px;
   flex-wrap: wrap;
 }
 .card {
@@ -827,7 +840,7 @@ footer {
 
 @media (max-width: 550px) {
   .hero-container h1 { font-size: 2rem; }
-  .hero-container h2 { font-size: 1.4rem; }
+  .hero-container h2 { font-size: 1.2rem; }
   .cards-container {padding-top: 0px;}
   .card-header h2 { font-size: 2rem; }
   .card-price { font-size: 1.5rem; }

@@ -206,6 +206,9 @@ document.querySelectorAll('.service-pill').forEach(pill => {
   });
 });
 
+
+
+
 /*****************************************************************************************************/
 /* ======================================== SLIDER RESPONSIVO CON DOTS ============================= */
 /*****************************************************************************************************/
@@ -299,7 +302,6 @@ function renderSliderGallery(cardsData) {
   ).join('');
 }
 
-
 function sliderGalleryInit() {
   let cardsData = sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
 
@@ -330,16 +332,24 @@ function sliderGalleryInit() {
       if (idx !== current) card.classList.remove('open');
     });
 
-    // Desplazamiento: en mobile/tablet la carta activa queda pegada a la izquierda, en desktop centrada
+    // --- ANIMACIÓN MEJORADA PARA MOBILE ---
+    // Detecta si hay que animar el paso de escolta a vitrina
     let moveX = 0;
     if (isMobileOrTabletView()) {
       moveX = -(current * (cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight)));
+      // Agrega clase para animación
+      track.classList.add('changing');
+      setTimeout(() => {
+        track.classList.remove('changing');
+      }, 400); // Duración de la transición
     } else {
       const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight);
       const container = track.parentElement;
       const containerWidth = container.offsetWidth;
       const centerOffset = (containerWidth - cardWidth) / 2;
       moveX = (centerOffset) - (current * cardWidth);
+      // Animación desktop opcional
+      track.classList.remove('changing');
     }
     track.style.transform = `translateX(${moveX}px)`;
 
@@ -401,8 +411,5 @@ function sliderGalleryInit() {
   // Inicializar
   updateSlider();
 }
-
-document.addEventListener('DOMContentLoaded', sliderGalleryInit);
-
 
 document.addEventListener('DOMContentLoaded', sliderGalleryInit);

@@ -150,8 +150,15 @@ section { padding: 80px 0; }
   gap: 24px;
   transition: transform 0.5s cubic-bezier(.4,0,.2,1);
   will-change: transform;
-    justify-content: center; /* <-- Esto centra las cards siempre */
-
+  justify-content: center;
+}
+.slider-gallery-track .card {
+  animation: none !important;
+  transition:
+    transform 0.6s cubic-bezier(.4,0,.2,1),
+    box-shadow 0.4s cubic-bezier(.4,0,.2,1),
+    opacity 0.3s;
+  will-change: transform, opacity;
 }
 .slider-gallery-container .card {
   min-width: 320px;
@@ -159,7 +166,6 @@ section { padding: 80px 0; }
   flex: 0 0 320px;
   margin: 0;
   cursor: pointer;
-  transition: transform 0.3s;
   opacity: 0.7;
 }
 .slider-gallery-container .card.active {
@@ -186,32 +192,20 @@ section { padding: 80px 0; }
 .slider-gallery-dot.active {
   background: var(--accent, #f72585);
 }
-@media (max-width: 900px) {
-  .slider-gallery-container .card,
-  .slider-gallery-track .card {
-    min-width: 260px;
-    max-width: 260px;
-    flex-basis: 260px;
-  }
+/* Opcional: animación de opacidad al cambiar de carta */
+.slider-gallery-track.changing {
+  opacity: 0.7;
+  transition:
+    opacity 0.25s cubic-bezier(.4,0,.2,1),
+    transform 0.6s cubic-bezier(.4,0,.2,1),
+    -webkit-transform 0.6s cubic-bezier(.4,0,.2,1);
 }
-@media (max-width: 700px) {
-  .slider-gallery-container .card,
-  .slider-gallery-track .card {
-    min-width: 90vw;
-    max-width: 90vw;
-    flex-basis: 90vw;
-  }
-  .slider-gallery-track {
-    gap: 12px;
-  }
-}
-@media (max-width: 500px) {
-  .slider-gallery-container .card,
-  .slider-gallery-track .card {
-    min-width: 98vw;
-    max-width: 98vw;
-    flex-basis: 98vw;
-  }
+.slider-gallery-track:not(.changing) {
+  opacity: 1;
+  transition:
+    opacity 0.25s cubic-bezier(.4,0,.2,1),
+    transform 0.6s cubic-bezier(.4,0,.2,1),
+    -webkit-transform 0.6s cubic-bezier(.4,0,.2,1);
 }
 
 /* ========================================= PACK CARDS =============================================*/
@@ -261,34 +255,6 @@ section { padding: 80px 0; }
   background: #4c4c4c;
   color: #fff;
 }
-/*
-.cards-container .card:nth-child(1) .card-header {
-  background: #d4357c;
-  color: white;
-  border-radius: 45px 0 50px 0;
-  box-shadow: 0 4px 18px rgba(255,190,11,0.15);
-}
-.cards-container .card:nth-child(2) .card-header {
-  background: var(--secondary);
-  color: #fff;
-  border-radius: 45px 0 50px 0;
-  box-shadow: 0 4px 18px rgba(58,134,255,0.15);
-}
-.cards-container .card:nth-child(3) .card-header {
-  background: #4c4c4c;
-  color: #fff;
-  border-radius: 45px 0 50px 0;
-  box-shadow: 0 4px 18px rgba(131,56,236,0.15);
-}
-.cards-container .card:nth-child(1) .card-price-container {
-  background: #d4357c;
-}
-.cards-container .card:nth-child(2) .card-price-container {
-  background: var(--secondary);
-}
-.cards-container .card:nth-child(3) .card-price-container {
-  background: #4c4c4c;
-}*/
 .card-header h2 {
   font-size: 2.2rem;
   font-weight: 700;
@@ -333,10 +299,19 @@ section { padding: 80px 0; }
   overflow: hidden;
   transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.3s;
 }
+.card-content li {
+  display: none;
+}
+.card-content li:nth-child(-n+4) {
+  display: flex;
+}
 .card.open .card-content {
   max-height: 800px;
   opacity: 1;
   transition: max-height 0.7s cubic-bezier(.4,0,.2,1), opacity 0.4s;
+}
+.card.open .card-content li {
+  display: flex;
 }
 .card ul { padding: 20px; }
 .card li {
@@ -392,7 +367,6 @@ section { padding: 80px 0; }
 #services .title-container {
   padding: 30px 0;
 }
-
 .mini-card {
   background-color: white;
   border-radius: var(--border-radius);
@@ -785,10 +759,63 @@ footer {
   background-color: var(--light-gray);
 }
 
-/* ======================================== RESPONSIVE ============================================= */
-/* ...todo tu CSS base y reglas previas... */
+/* Quitar animación de fadeIn solo a las cards del slider-gallery-track */
+.slider-gallery-track .card {
+  animation: none !important;
+}
 
-@media (max-width: 900px), (max-width: 700px) {
+/* Mantener animación para otras cards si lo deseas */
+.hero-container, .mini-card { animation: fadeIn 0.8s ease forwards; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+.mini-card:nth-child(1) { animation-delay: 0.1s; }
+.mini-card:nth-child(2) { animation-delay: 0.2s; }
+.mini-card:nth-child(3) { animation-delay: 0.3s; }
+.mini-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ======================================== ANIMATIONS ============================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.hero-container, .card, .mini-card { animation: fadeIn 0.8s ease forwards; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+.mini-card:nth-child(1) { animation-delay: 0.1s; }
+.mini-card:nth-child(2) { animation-delay: 0.2s; }
+.mini-card:nth-child(3) { animation-delay: 0.3s; }
+.mini-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ========================== MEDIA QUERIES AL FINAL ========================== */
+
+@media (min-width: 701px) {
+  .slider-gallery-track .card {
+    opacity: 0.7;
+    z-index: 1;
+  }
+  .slider-gallery-track .card.active {
+    transform: scale(1.08);
+    box-shadow: 0 10px 32px rgba(67,97,238,0.15);
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-container h1 { font-size: 2.8rem; }
+  #home .slider-gallery-container { margin-top: 0; }
+  .slider-gallery-track .card {
+    max-width: 300px;
+    min-width: 300px;
+  }
+  section { padding: 60px 0; }
+  .service-mini-card.active { width: 90%; }
+  .product-detail-row .text-container h2 { font-size: 1.5rem; }
+  .product-detail-row .text-container { padding: 12px; }
+  #services .service-mini-card p  { font-size: 1.2rem; }
+}
+
+@media (max-width: 700px) {
   #navbar { padding: 15px 20px; }
   .hamburger { display: flex; z-index: 1300; }
   .nav-menu {
@@ -855,69 +882,77 @@ footer {
     box-shadow: 0 2px 12px rgba(247,37,133,0.10);
     transform: none;
   }
-  #home .title-container {
-    margin-bottom: 0; /* Elimina separación inferior */
-  }
-  #home .title-container h3 {
-    margin: 0;
-    padding: 0;
-    font-size: 1.4rem;
-  }
-  .slider-gallery-container {
-    margin-top: 0; /* Elimina separación superior */
-  }
   .slider-gallery-track {
-    margin-top: 0;
     justify-content: flex-start !important;
     width: fit-content;
-    transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    transition:
+    transform 0.6s cubic-bezier(.4,0,.2,1),
+    -webkit-transform 0.6s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+    display: flex;
+    gap: 24px;
+  }
+  .slider-gallery-track.changing {
+    opacity: 0.7;
+    transition:
+      opacity 0.25s cubic-bezier(.4,0,.2,1),
+      transform 0.6s cubic-bezier(.4,0,.2,1),
+      -webkit-transform 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .slider-gallery-track:not(.changing) {
+    opacity: 1;
+    transition:
+      opacity 0.25s cubic-bezier(.4,0,.2,1),
+      transform 0.6s cubic-bezier(.4,0,.2,1),
+      -webkit-transform 0.6s cubic-bezier(.4,0,.2,1);
   }
   .slider-gallery-track .card { max-width: 280px; min-width: 280px; }
   .slider-gallery-container { overflow-x: hidden; }
   .card-header h2 { font-size: 2rem; }
-  #services .title-container h2 { font-size: 2rem; }
   .service-mini-card.active { width: 90%; }
   #services .service-mini-card p  { font-size: 1.2rem; }
   .nav-menu.active { right: 0; }
   .nav-menu a { color: var(--light); }
   .navbar-social-button { display: none; }
-  .hero-container h1 { font-size: 2.5rem; }
-  .hero-container h2 { font-size: 1.3rem; }
+  .hero-container h1 { font-size: 2.2rem; }
+  .hero-container h2 { font-size: 1rem; }
   #home { padding-top: 120px; }
+  #home .title-container h3 { font-size: 1.2rem;}
   .footer-container { gap: 18px; padding: 0 10px; }
   .footer-links { gap: 16px; font-size: 0.98rem; }
   .footer-brand { font-size: 1.2rem; }
   .contact-container { display: flex; flex-direction: column; }
 }
 
-
-
-
 @media (max-width: 550px) {
-  #home .main-container { padding: 10px; margin: 0; }
-  #home .title-container {
-    margin-bottom: 0; /* Elimina separación inferior */
-  }
-  #home .title-container h3 { font-size: 1.3rem; margin: 0; padding: 0; }
+  #home .main-container { padding: 10px }
+  #home .title-container h3 { font-size: 1.4rem;}
   .hero-container h1 { font-size: 2.4rem; }
-  .hero-container h2 { font-size: 1.2rem; }
-  .slider-gallery-container {
-    margin-top: 0; /* Elimina separación superior */
-  }
+  .hero-container h2 { font-size: 1.4rem; }
   .slider-gallery-track {
     gap: 12px;
-    justify-content: flex-start !important;
-    width: fit-content;
-    transition: transform 0.5s cubic-bezier(.4,0,.2,1);
-    margin-top: 0;
+    justify-content: center;
   }
   .slider-gallery-track .card {
     max-width: 325px;
     min-width: 325px;
+    transition:
+      max-width 0.4s cubic-bezier(.4,0,.2,1),
+      min-width 0.4s cubic-bezier(.4,0,.2,1),
+      transform 0.4s cubic-bezier(.4,0,.2,1),
+      box-shadow 0.4s cubic-bezier(.4,0,.2,1),
+      opacity 0.3s;
+  }
+  .slider-gallery-track .card.active.open {
+    max-width: 95vw;
+    min-width: 95vw;
+    z-index: 3;
+    box-shadow: 0 10px 32px rgba(67,97,238,0.15);
+    /* Opcional: escala levemente */
+    transform: scale(1.03);
   }
   .card-header h2 { font-size: 2rem; }
   #services .title-container h2 { font-size: 2.0rem; } 
-
   .services-cards { grid-template-columns: 1fr; gap: 18px; }
   .services-tabs { gap: 10px; flex-wrap: wrap; }
   .service-pill span { display: none; }
@@ -939,81 +974,53 @@ footer {
     align-items: center;
     gap: 0;
   }
-  #product .product-detail-row .image-container { 
-    order: -1;
-    width: 100%;
+
+  .slider-gallery-track .card.active.open .card-content ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    display: flex !important;
-    margin-bottom: -20px;
-    min-width: 0;
-    max-width: none; 
-  }
-  #product .product-detail-row .image-container img {
-    width: 80px !important;
-    height: 80px !important;
-    min-width: 32px;
-    min-height: 32px;
-    max-width: 80px;
-    max-height: 80px;
-    object-fit: cover;
-    box-shadow: none;
-    margin: 0 auto 0px auto;
-    display: block;
-  }
-  #product .title-container h1 { 
-    font-size: 1.5rem;
-    margin-top: 25px; 
-  }
-  #product .product-detail-row .text-container h2 { 
-    font-size: 1.5rem;
-    margin-top: 8px; 
-  }
-  #product .product-detail-row .text-container {
-    align-items: center;
-    text-align: center;
-    padding: 0 5px;
+    padding-left: 0;
   }
 }
 
-
-
-@media (max-width: 440px) {
+@media (max-width: 420px) {
   .hero-container h1 { font-size: 2.2rem; }
   .hero-container h2 { font-size: 1.2rem; }
-  #home .main-container { padding: 10px }
-  #home .title-container h3 {
-    margin: 0 ; /* Elimina separación inferior */
-    font-size: 1.1rem;
-  }
+  #home .main-container { padding: 0px }
   .slider-gallery-track {
     justify-content: flex-start !important;
     width: fit-content;
-    /* Elimina centrado, arranca a la izquierda */
     transition: transform 0.5s cubic-bezier(.4,0,.2,1);
   }
-  .slider-gallery-track .card { max-width: 290px; min-width: 290px; }
-  .slider-gallery-container {
-    overflow-x: hidden;
-    padding: 0;
+  .slider-gallery-track .card {
+    max-width: 290px;
+    min-width: 290px;
+    transition:
+      max-width 0.4s cubic-bezier(.4,0,.2,1),
+      min-width 0.4s cubic-bezier(.4,0,.2,1),
+      transform 0.4s cubic-bezier(.4,0,.2,1),
+      box-shadow 0.4s cubic-bezier(.4,0,.2,1),
+      opacity 0.3s;
+  }
+  .slider-gallery-track .card.active.open {
+    max-width: 99vw;
+    min-width: 99vw;
+    z-index: 3;
+    box-shadow: 0 10px 32px rgba(67,97,238,0.15);
+    transform: scale(1.03);
   }
   .card-header h2 { font-size: 2rem; }
   .card-price { font-size: 1.8rem; }
   .title-container p { font-size: 1.5rem; }
-  #services .title-container { padding: 15px; }
-  #services .title-container h2 { font-size: 1.9rem; }
+  #services .title-container h2 { font-size: 2rem; }
   section { padding: 40px 0; }
   .navbar-logo img { height: 30px; }
   .navbar-logo span { font-size: 1.6rem; }
   .contact-info, .contact-form { padding: 20px; }
   .footer-container { flex-direction: column; align-items: center; gap: 18px; padding: 0 10px; text-align: center; }
   .service-mini-card.active { width: 100%; height: 280px; }
-  #product .product-detail-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-  #product .product-detail-row .image-container { 
+  #product .product-detail_row .image-container { 
     order: -1;
     width: 100%;
     justify-content: center;
@@ -1043,34 +1050,21 @@ footer {
     text-align: center;
     padding: 0 5px;
   }
-  #product .product-detail-row .text-container p { font-size: 1.1rem; }
-  #product .product-detail-row .text-container p:last-child { font-size: 1.4rem; }
-  #product .text-container p:nth-child(3)::after {  
-    margin: 50px auto 0 auto;
-    width: 275px;
-    height: 2px;
-  }
 }
 
-@media (min-width: 900px) {
-  #services .title-container h2 { font-size: 2.3rem; }
-  .service-mini-card.active {
-    transform: scale(1.13);
-    box-shadow: 0 12px 32px rgba(67,97,238,0.18);
-    z-index: 2;
-    width: 85%;
-  }
-  #home .title-container h3 { margin-bottom: 0px; }
-  #home .slider-gallery-container { margin-top: 0; }
-  .service-mini-card.active i { font-size: 3rem; margin-bottom: 14px; }
-  .service-mini-card.active p { font-size: 1.3rem; }
-  #services .service-mini-card p  { font-size: 1.3rem; }
-  #services .services-cards .service-mini-card { height: 210px; }
-  .contact-form { max-width: 500px; }
-  #product .product-detail-row .text-container h2 { 
-    font-size: 2rem;
-  }
+/* Quitar animación de fadeIn solo a las cards del slider-gallery-track */
+.slider-gallery-track .card {
+  animation: none !important;
 }
+
+/* Mantener animación para otras cards si lo deseas */
+.hero-container, .mini-card { animation: fadeIn 0.8s ease forwards; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+.mini-card:nth-child(1) { animation-delay: 0.1s; }
+.mini-card:nth-child(2) { animation-delay: 0.2s; }
+.mini-card:nth-child(3) { animation-delay: 0.3s; }
+.mini-card:nth-child(4) { animation-delay: 0.4s; }
 
 /* ======================================== ANIMATIONS ============================================= */
 @keyframes fadeIn {

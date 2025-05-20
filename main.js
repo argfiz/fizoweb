@@ -45,7 +45,6 @@ const productData = [
 ];
 
 function renderProductDetails() {
-  // Busca el contenedor solo si existe en la página actual
   const container = document.querySelector('#product .main-container');
   if (!container) return;
   container.innerHTML = productData.map(item => `
@@ -76,28 +75,19 @@ document.addEventListener('DOMContentLoaded', function() {
   renderProductDetails();
 });
 
-
-
-
-
-
-
 /*****************************************************************************************************/
 /* ========================================== MENU HAMBURGUER ====================================== */
 /*****************************************************************************************************/
-// Seleccionar elementos del DOM
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-links a');
 
-// Toggle para el menú móvil
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   navMenu.classList.toggle('active');
 });
 
-// Cerrar el menú al hacer clic en un enlace
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
@@ -105,12 +95,9 @@ navLinks.forEach(link => {
   });
 });
 
-
-
 /*****************************************************************************************************/
 /* ============================================ NAVBAR ============================================= */
 /*****************************************************************************************************/
-// Cambiar estilo del navbar al hacer scroll
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     navbar.style.padding = '10px 30px';
@@ -122,16 +109,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Animación de entrada para elementos al hacer scroll
-const observerOptions = {
-  threshold: 0.1
-};
-
-
-
-
-/*****************************************************************************************************/
-/* ========================================== PACK ANIMATION ====================================== */
-/*****************************************************************************************************/
+const observerOptions = { threshold: 0.1 };
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -141,7 +119,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Seleccionar elementos para animar
 const animatedElements = document.querySelectorAll('.card, .mini-card, .text-container, .image-container');
 animatedElements.forEach(el => {
   el.style.opacity = '0';
@@ -152,19 +129,14 @@ animatedElements.forEach(el => {
 
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', function (e) {
-    // Evita que se despliegue si se hace click en un enlace dentro de la card
     if (e.target.tagName === 'A') return;
     card.classList.toggle('open');
   });
 });
 
-
-
-
 /*****************************************************************************************************/
 /* ======================================== GALLERY SERVICES ======================================= */
 /*****************************************************************************************************/
-
 const servicesData = [
   {
     key: "paginas",
@@ -224,11 +196,8 @@ function renderServiceCards(selectedKey = "paginas") {
       </div>
     `).join("");
 }
-
-// Inicializa con la primera pastilla activa
 renderServiceCards();
 
-// Lógica de tabs
 document.querySelectorAll('.service-pill').forEach(pill => {
   pill.addEventListener('click', function () {
     document.querySelectorAll('.service-pill').forEach(p => p.classList.remove('active'));
@@ -237,8 +206,203 @@ document.querySelectorAll('.service-pill').forEach(pill => {
   });
 });
 
+/*****************************************************************************************************/
+/* ======================================== SLIDER RESPONSIVO CON DOTS ============================= */
+/*****************************************************************************************************/
+const sliderCardsData = [
+  {
+    nombre: "Pack S",
+    subtitulo: "Oportuno para emprendedores",
+    precio: "$150.000 ARS",
+    precioNota: "Precio Final",
+    items: [
+      "1 Página",
+      "3 Secciones",
+      "10 Productos",
+      "Multidispositivos",
+      "Flotante de WhatsApp",
+      "Enlaces a redes sociales",
+      "Formulario de contacto",
+      "Instalación en servidor",
+      "Hosting, año de regalo."
+    ]
+  },
+  {
+    nombre: "Pack M",
+    subtitulo: "Ideal para indecisos",
+    precio: "$250.000 ARS",
+    precioNota: "Precio Final",
+    items: [
+      "3 Página",
+      "9 Secciones",
+      "25 Productos",
+      "Multidispositivos",
+      "Flotante de WhatsApp",
+      "Enlaces a redes sociales",
+      "Formulario de contacto",
+      "Instalación en servidor",
+      "Hosting, año de regalo."
+    ]
+  },
+  {
+    nombre: "Pack G",
+    subtitulo: "Perfecto para tu negocio",
+    precio: "$350.000 ARS",
+    precioNota: "Precio Final",
+    items: [
+      "5 Página",
+      "15 Secciones",
+      "50 Productos",
+      "Multidispositivos",
+      "Flotante de WhatsApp",
+      "Enlaces a redes sociales",
+      "Formulario de contacto",
+      "Instalación en servidor",
+      "Hosting, año de regalo."
+    ]
+  }
+];
+
+function renderSliderGallery(cardsData) {
+  const track = document.getElementById('sliderGalleryTrack');
+  const dots = document.getElementById('sliderGalleryDots');
+  if (!track || !dots) return;
+
+  const packClass = (nombre) => {
+    if (nombre.includes('Pack S')) return 'pack-s';
+    if (nombre.includes('Pack M')) return 'pack-m';
+    if (nombre.includes('Pack G')) return 'pack-g';
+    return '';
+  };
+
+  track.innerHTML = cardsData.map((pack, idx) => `
+    <article class="card ${packClass(pack.nombre)}" data-idx="${idx}" data-original-idx="${pack.originalIdx ?? idx}">
+      <div class="card-header ${packClass(pack.nombre)}">
+        <h2>${pack.nombre.replace('Pack ', 'Pack <span>') + '</span>'}</h2>
+        <p>${pack.subtitulo}</p>
+      </div>
+      <div class="card-content">
+        <ul>
+          ${pack.items.map(item => `<li><p>${item}</p></li>`).join('')}
+        </ul>
+      </div>
+      <div class="card-price-container ${packClass(pack.nombre)}">
+        <p class="card-price">${pack.precio}</p>
+        <span>${pack.precioNota}</span>
+      </div>
+    </article>
+  `).join('');
+
+  // Los dots SIEMPRE representan el orden original
+  dots.innerHTML = sliderCardsData.map((_, idx) =>
+    `<button class="slider-gallery-dot" data-dot="${idx}" aria-label="Ir a la carta ${idx + 1}"></button>`
+  ).join('');
+}
 
 
+function sliderGalleryInit() {
+  let cardsData = sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
+
+  // Inicia en la 1ra carta en mobile/tablet, 2da en desktop
+  function getInitialCurrent() {
+    return window.matchMedia('(max-width: 550px)').matches ? 0 : 1;
+  }
+  let current = getInitialCurrent();
+
+  function isMobileOrTabletView() {
+    return window.matchMedia('(max-width: 550px)').matches;
+  }
+
+  function updateSlider() {
+    renderSliderGallery(cardsData);
+    const track = document.getElementById('sliderGalleryTrack');
+    const dots = document.getElementById('sliderGalleryDots');
+    const cards = Array.from(track.children);
+
+    if (!cards.length) return;
+
+    // Ajusta current según el tamaño de pantalla
+    if (isMobileOrTabletView() && current !== 0) current = 0;
+    if (!isMobileOrTabletView() && current !== 1) current = 1;
+
+    cards.forEach((card, idx) => {
+      card.classList.toggle('active', idx === current);
+      if (idx !== current) card.classList.remove('open');
+    });
+
+    // Desplazamiento: en mobile/tablet la carta activa queda pegada a la izquierda, en desktop centrada
+    let moveX = 0;
+    if (isMobileOrTabletView()) {
+      moveX = -(current * (cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight)));
+    } else {
+      const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight);
+      const container = track.parentElement;
+      const containerWidth = container.offsetWidth;
+      const centerOffset = (containerWidth - cardWidth) / 2;
+      moveX = (centerOffset) - (current * cardWidth);
+    }
+    track.style.transform = `translateX(${moveX}px)`;
+
+    // Dots: activamos el dot que corresponde a la carta activa según su índice original
+    const activeOriginalIdx = cardsData[current].originalIdx;
+    dots.querySelectorAll('.slider-gallery-dot').forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeOriginalIdx);
+      dot.onclick = () => {
+        const newIdx = cardsData.findIndex(c => c.originalIdx === idx);
+        if (newIdx !== -1) {
+          // En mobile/tablet: si selecciono la carta escolta derecha (idx === 1), la paso a la "vitrina" (posición 0)
+          if (isMobileOrTabletView() && newIdx === 1) {
+            cardsData = [cardsData[1], cardsData[2], cardsData[0]];
+            current = 0;
+            updateSlider();
+            return;
+          }
+          current = newIdx;
+          handleInfiniteCorrimiento();
+          updateSlider();
+        }
+      };
+    });
+
+    // Cards click
+    cards.forEach((card, idx) => {
+      card.onclick = function(e) {
+        if (idx === current) {
+          card.classList.toggle('open');
+        } else {
+          // En mobile/tablet: si selecciono la carta escolta derecha (idx === 1), la paso a la "vitrina" (posición 0)
+          if (isMobileOrTabletView() && idx === 1) {
+            cardsData = [cardsData[1], cardsData[2], cardsData[0]];
+            current = 0;
+            updateSlider();
+            return;
+          }
+          current = idx;
+          handleInfiniteCorrimiento();
+          updateSlider();
+        }
+      };
+    });
+  }
+
+  // Corrimiento infinito: al seleccionar un extremo, ese pack va al centro y el otro extremo rota para dar efecto infinito
+  function handleInfiniteCorrimiento() {
+    if (current === 0) {
+      cardsData = [cardsData[2], cardsData[0], cardsData[1]];
+      current = 1;
+    } else if (current === 2) {
+      cardsData = [cardsData[1], cardsData[2], cardsData[0]];
+      current = 1;
+    }
+  }
+
+  window.addEventListener('resize', updateSlider);
+
+  // Inicializar
+  updateSlider();
+}
+
+document.addEventListener('DOMContentLoaded', sliderGalleryInit);
 
 
-
+document.addEventListener('DOMContentLoaded', sliderGalleryInit);

@@ -120,7 +120,7 @@ section {
     font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 12px 18px;
+    padding: 0px 18px;
     width: 100%;
     text-align: left;
     border-radius: 0;
@@ -1182,6 +1182,7 @@ footer {
     gap: 0px;
   }
   .nav-links a {
+    padding: 0px 10px;
     font-size: 1.2rem ;
   }
   

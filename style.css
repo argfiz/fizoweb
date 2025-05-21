@@ -1147,14 +1147,14 @@ footer {
 
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
-
+/*
 @media (min-width: 901px){
 .slider-gallery-track .card {
     max-width: 300px;
     min-width: 300px;
   }
 }
-
+*/
 
 @media (max-width: 900px) {
   #navbar {
@@ -1271,6 +1271,7 @@ footer {
 
   .slider-gallery-container {
     overflow-x: hidden;
+    
   }
 
   .card-header h2 {
@@ -1333,7 +1334,7 @@ footer {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 500px) {
   #home .main-container {
     padding: 10px
   }

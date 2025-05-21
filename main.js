@@ -304,7 +304,7 @@ function renderSliderGallery(cardsData) {
 
 function sliderGalleryInit() {
   function isMobileOrTabletView() {
-    return window.matchMedia('(max-width: 700px)').matches;
+    return window.matchMedia('(max-width: 500px)').matches;
   }
 
   // Reordena para que Pack S (sliderCardsData[0]) esté en el centro en desktop/tablet

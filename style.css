@@ -112,34 +112,34 @@ section {
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 0px;
 }
 
- .nav-links a {
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 0px 18px;
-    width: 100%;
-    text-align: left;
-    border-radius: 0;
-    background: transparent;
-    margin: 0;
-    box-shadow: none;
-    position: relative;
-    overflow: hidden;
-    display: block;
-    transition: background 0.18s, color 0.18s;
-  }
+.nav-links a {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 0px 18px;
+  width: 100%;
+  text-align: left;
+  border-radius: 0;
+  background: transparent;
+  margin: 0;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  transition: background 0.18s, color 0.18s;
+}
 
-  .nav-links a:hover,
-  .nav-links a:focus {
-    background: var(--accent, #f72585);
-    color: #fff;
-    box-shadow: 0 2px 12px rgba(247, 37, 133, 0.10);
-    transform: none;
-  }
+.nav-links a:hover,
+.nav-links a:focus {
+  background: var(--accent, #f72585);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(247, 37, 133, 0.10);
+  transform: none;
+}
 
 .nav-links a::after {
   content: '';
@@ -202,7 +202,7 @@ section {
 
 /* ========================================= HOME SECTION ===========================================*/
 #home {
-  padding-top: 150px;
+  padding-top: 125px;
   padding-bottom: 0px;
   min-height: auto;
   background: linear-gradient(135deg, white 0%, var(--light-gray) 100%);
@@ -275,7 +275,7 @@ section {
   margin: 0 auto;
   position: relative;
   overflow: visible;
-  padding: 0 10px;
+  gap: 20px;
 }
 
 .slider-gallery-track {
@@ -283,6 +283,7 @@ section {
   gap: 24px;
   width: auto;
   margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 .slider-gallery-track .card {
@@ -1165,6 +1166,7 @@ footer {
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
 @media (min-width: 901px) {
+
   /* Mantener el orden original y permitir abrir varias cartas a la vez */
   .slider-gallery-track {
     justify-content: center;
@@ -1175,6 +1177,7 @@ footer {
     pointer-events: auto;
     user-select: auto;
   }
+
   .slider-gallery-track .card {
     /* No hay efecto de "vitrina" ni corrimiento */
     opacity: 1;
@@ -1183,22 +1186,26 @@ footer {
     transition: box-shadow 0.3s, transform 0.3s;
     cursor: pointer;
   }
+
   .slider-gallery-track .card.active {
     /* Elimina el efecto de "activa" para que todas se vean igual cerradas */
     opacity: 1;
     transform: none;
     z-index: 1;
   }
+
   /* Permite abrir varias cartas a la vez */
   .slider-gallery-track .card.open .card-content {
     max-height: 800px;
     opacity: 1;
     transition: max-height 0.7s cubic-bezier(.4, 0, .2, 1), opacity 0.4s;
   }
+
   .slider-gallery-track .card.open .card-content li {
     display: flex;
   }
-.slider-gallery-track .card.open .card-header {
+
+  .slider-gallery-track .card.open .card-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1217,7 +1224,8 @@ footer {
       padding 0.4s cubic-bezier(.4, 0, .2, 1),
       margin 0.4s cubic-bezier(.4, 0, .2, 1);
   }
-.slider-gallery-track .card.open .card-header h2 {
+
+  .slider-gallery-track .card.open .card-header h2 {
     font-size: 1.5rem;
     margin: 0;
     padding: 0;
@@ -1237,22 +1245,26 @@ footer {
     pointer-events: none;
     overflow: hidden;
   }
+
   .slider-gallery-track .card.open .card-header {
     background: inherit !important;
   }
+
   .slider-gallery-track .card.open .card-header.pack-s {
     background: #d4357c !important;
     color: #fff;
   }
+
   .slider-gallery-track .card.open .card-header.pack-m {
     background: var(--secondary) !important;
     color: #fff;
   }
+
   .slider-gallery-track .card.open .card-header.pack-g {
     background: #4c4c4c !important;
     color: #fff;
   }
-  
+
 }
 
 
@@ -1260,6 +1272,7 @@ footer {
   #home .main-container {
     padding: 0px
   }
+
   #navbar {
     padding: 15px 20px;
   }
@@ -1270,16 +1283,17 @@ footer {
     align-items: center;
     gap: 0px;
   }
+
   .nav-links a {
     padding: 0px 10px;
-    font-size: 1.2rem ;
+    font-size: 1.1rem;
   }
-  
+
   .nav-links li:last-child {
     border-bottom: none;
   }
 
- 
+
 
   .slider-gallery-track {
     justify-content: flex-start !important;
@@ -1342,12 +1356,14 @@ footer {
 
 
 
-  .hero-container h1 {
-    font-size: 2.2rem;
+  #home .hero-container h1 {
+    font-size: 2.4rem;
+    padding: 0 20px;
   }
 
   .hero-container h2 {
-    font-size: 1rem;
+    font-size: 1.4rem;
+     
   }
 
   #home {
@@ -1355,7 +1371,7 @@ footer {
   }
 
   #home .title-container h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .footer-container {
@@ -1380,9 +1396,23 @@ footer {
 
 
 @media (max-width: 700px) {
-  #home .main-container {
+   #home .main-container {
     padding: 0px
   }
+.hero-container h1 {
+    font-size: 2.3rem;
+    padding: 10px;
+  }
+  #home .hero-container h2 {
+    font-size: 1.4rem;
+    padding: 0 20px;
+  }
+
+  #home .title-container h3 {
+    font-size: 1.3rem;
+  }
+
+  
 
   .hamburger {
     display: flex;
@@ -1426,17 +1456,19 @@ footer {
     padding: 0px
   }
 
-  #home .title-container h3 {
+  #home .hero-container h2 {
     font-size: 1.4rem;
+    padding: 15px
+  }
+
+  #home .title-container h3 {
+    font-size: 1.3rem;
   }
 
   .hero-container h1 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
-  .hero-container h2 {
-    font-size: 1.4rem;
-  }
 
   .slider-gallery-track {
     gap: 12px;
@@ -1548,10 +1580,25 @@ footer {
 
 
 @media (max-width: 420px) {
+  .hero-container h1 {
+    font-size: 2.1rem;
+  }
+  #home .hero-container h2 {
+    padding: 15px
+  }
+#home .hero-container h2 {
+    font-size: 1.3rem;
+    padding: 15px
+  }
+
+  #home .title-container h3 {
+    font-size: 1.2rem;
+  }
   .slider-gallery-track .card {
     max-width: 280px;
     min-width: 280px;
   }
+
 }
 
 

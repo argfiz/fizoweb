@@ -100,10 +100,10 @@ navLinks.forEach(link => {
 /*****************************************************************************************************/
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    navbar.style.padding = '10px 30px';
+    navbar.style.padding = '5px 25px';
     navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
   } else {
-    navbar.style.padding = '20px 30px';
+    navbar.style.padding = '15px 25px';
     navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
   }
 });

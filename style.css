@@ -113,19 +113,33 @@ section {
 .nav-links {
   display: flex;
   gap: 30px;
-  font-size: 1.2rem;
 }
 
-.nav-links a {
-  color: white;
-  font-weight: 600;
-  position: relative;
-  transition: var(--transition);
-}
+ .nav-links a {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 12px 18px;
+    width: 100%;
+    text-align: left;
+    border-radius: 0;
+    background: transparent;
+    margin: 0;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    transition: background 0.18s, color 0.18s;
+  }
 
-.nav-links a:hover {
-  color: white;
-}
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background: var(--accent, #f72585);
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(247, 37, 133, 0.10);
+    transform: none;
+  }
 
 .nav-links a::after {
   content: '';
@@ -1148,94 +1162,34 @@ footer {
 
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
-@media ( min-width: 901px) {
+/*@media ( min-width: 900px) {
   .slider-gallery-track .card{
    max-width: 300px;
     min-width: 300px;
   }
-}
-@media ( max-width: 900px) {
-   .slider-gallery-track .card {
-    max-width: 280px;
-    min-width: 280px;
-  }
-}
+}*/
 
-@media (max-width: 870px) {
+
+@media (max-width: 900px) {
   #navbar {
     padding: 15px 20px;
   }
 
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80vw;
-    max-width: 340px;
-    height: 100vh;
-    background: rgba(56, 25, 84, 0.97);
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
-    border-top-left-radius: 32px;
-    border-bottom-left-radius: 32px;
-    transition: right 0.35s cubic-bezier(.4, 0, .2, 1), background 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    z-index: 1200;
-    backdrop-filter: blur(14px);
-    padding: 40px 0 0 0;
-    gap: 0;
-  }
-
-  .nav-menu.active {
-    right: 0;
-  }
-
   .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0px;
   }
-
-  .nav-links li {
-    width: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  .nav-links a {
+    font-size: 1.2rem ;
   }
-
+  
   .nav-links li:last-child {
     border-bottom: none;
   }
 
-  .nav-links a {
-    color: #fff;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 18px 32px;
-    width: 100%;
-    text-align: left;
-    border-radius: 0;
-    background: transparent;
-    margin: 0;
-    box-shadow: none;
-    position: relative;
-    overflow: hidden;
-    display: block;
-    transition: background 0.18s, color 0.18s;
-  }
-
-  .nav-links a:hover,
-  .nav-links a:focus {
-    background: var(--accent, #f72585);
-    color: #fff;
-    box-shadow: 0 2px 12px rgba(247, 37, 133, 0.10);
-    transform: none;
-  }
+ 
 
   .slider-gallery-track {
     justify-content: flex-start !important;
@@ -1271,7 +1225,7 @@ footer {
 
   .slider-gallery-container {
     overflow-x: hidden;
-    
+
   }
 
   .card-header h2 {
@@ -1286,6 +1240,8 @@ footer {
     font-size: 1.2rem;
   }
 
+
+
   .nav-menu.active {
     right: 0;
   }
@@ -1294,7 +1250,7 @@ footer {
     color: var(--light);
   }
 
-  
+
 
   .hero-container h1 {
     font-size: 2.2rem;
@@ -1334,16 +1290,40 @@ footer {
 
 
 @media (max-width: 700px) {
-.hamburger {
+  .hamburger {
     display: flex;
     z-index: 1300;
   }
+
   .navbar-social-button {
     display: none;
   }
+
   .slider-gallery-track .card {
     max-width: 325px;
     min-width: 325px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80vw;
+    max-width: 340px;
+    height: 100vh;
+    background: rgba(56, 25, 84, 0.97);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+    transition: right 0.35s cubic-bezier(.4, 0, .2, 1), background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 1200;
+    backdrop-filter: blur(14px);
+    padding: 40px 0 0 0;
+    gap: 0;
   }
 }
 

@@ -266,6 +266,10 @@ section {
 
 /* ========================================= SLIDER GALLERY RESPONSIVE =============================*/
 .slider-gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 900px;
   margin: 40px auto 0 auto;
@@ -276,11 +280,11 @@ section {
 
 .slider-gallery-track {
   display: flex;
-  gap: 24px;
-  transition: transform 0.5s cubic-bezier(.4, 0, .2, 1);
-  will-change: transform;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  gap: 24px;
+  width: auto;
+  margin: 0 auto;
 }
 
 .slider-gallery-track .card {
@@ -1162,12 +1166,29 @@ footer {
 
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
-/*@media ( min-width: 900px) {
-  .slider-gallery-track .card{
-   max-width: 300px;
-    min-width: 300px;
+@media (min-width: 901px) {
+  .slider-gallery-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    overflow: visible;
+    padding: 0 10px;
   }
-}*/
+  .slider-gallery-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    margin: 0 auto;
+    /* Centrado respecto a su contenedor */
+  }
+}
 
 
 @media (max-width: 900px) {

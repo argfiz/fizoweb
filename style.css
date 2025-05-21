@@ -1149,7 +1149,10 @@ footer {
 
 
 @media (min-width: 901px){
-
+.slider-gallery-track .card {
+    max-width: 300px;
+    min-width: 300px;
+  }
 }
 
 

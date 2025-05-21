@@ -303,17 +303,27 @@ function renderSliderGallery(cardsData) {
 }
 
 function sliderGalleryInit() {
-  let cardsData = sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
-
-  // Inicia en la 1ra carta en mobile/tablet, 2da en desktop
-  function getInitialCurrent() {
-    return window.matchMedia('(max-width: 550px)').matches ? 0 : 1;
-  }
-  let current = getInitialCurrent();
-
   function isMobileOrTabletView() {
-    return window.matchMedia('(max-width: 550px)').matches;
+    return window.matchMedia('(max-width: 700px)').matches;
   }
+
+  // Reordena para que Pack S (sliderCardsData[0]) esté en el centro en desktop/tablet
+  function getInitialCardsData() {
+    if (isMobileOrTabletView()) {
+      // Mobile: orden normal
+      return sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
+    } else {
+      // Desktop/tablet: Pack S al centro (posición 1)
+      return [
+        { ...sliderCardsData[1], originalIdx: 1 }, // Pack M
+        { ...sliderCardsData[0], originalIdx: 0 }, // Pack S (centro/vitrina)
+        { ...sliderCardsData[2], originalIdx: 2 }  // Pack G
+      ];
+    }
+  }
+
+  let cardsData = getInitialCardsData();
+  let current = isMobileOrTabletView() ? 0 : 1; // Mobile: primer card, Desktop/Tablet: centro
 
   function updateSlider() {
     renderSliderGallery(cardsData);
@@ -332,41 +342,31 @@ function sliderGalleryInit() {
       if (idx !== current) card.classList.remove('open');
     });
 
-    // --- ANIMACIÓN MEJORADA PARA MOBILE ---
-    // Detecta si hay que animar el paso de escolta a vitrina
+    // --- ANIMACIÓN Y CENTRADO ---
     let moveX = 0;
     if (isMobileOrTabletView()) {
       moveX = -(current * (cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight)));
-      // Agrega clase para animación
       track.classList.add('changing');
       setTimeout(() => {
         track.classList.remove('changing');
-      }, 400); // Duración de la transición
+      }, 400);
     } else {
       const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight);
       const container = track.parentElement;
       const containerWidth = container.offsetWidth;
       const centerOffset = (containerWidth - cardWidth) / 2;
-      moveX = (centerOffset) - (current * cardWidth);
-      // Animación desktop opcional
+      moveX = centerOffset - (current * cardWidth);
       track.classList.remove('changing');
     }
     track.style.transform = `translateX(${moveX}px)`;
 
-    // Dots: activamos el dot que corresponde a la carta activa según su índice original
+    // Dots
     const activeOriginalIdx = cardsData[current].originalIdx;
     dots.querySelectorAll('.slider-gallery-dot').forEach((dot, idx) => {
       dot.classList.toggle('active', idx === activeOriginalIdx);
       dot.onclick = () => {
         const newIdx = cardsData.findIndex(c => c.originalIdx === idx);
         if (newIdx !== -1) {
-          // En mobile/tablet: si selecciono la carta escolta derecha (idx === 1), la paso a la "vitrina" (posición 0)
-          if (isMobileOrTabletView() && newIdx === 1) {
-            cardsData = [cardsData[1], cardsData[2], cardsData[0]];
-            current = 0;
-            updateSlider();
-            return;
-          }
           current = newIdx;
           handleInfiniteCorrimiento();
           updateSlider();
@@ -380,13 +380,6 @@ function sliderGalleryInit() {
         if (idx === current) {
           card.classList.toggle('open');
         } else {
-          // En mobile/tablet: si selecciono la carta escolta derecha (idx === 1), la paso a la "vitrina" (posición 0)
-          if (isMobileOrTabletView() && idx === 1) {
-            cardsData = [cardsData[1], cardsData[2], cardsData[0]];
-            current = 0;
-            updateSlider();
-            return;
-          }
           current = idx;
           handleInfiniteCorrimiento();
           updateSlider();
@@ -406,7 +399,11 @@ function sliderGalleryInit() {
     }
   }
 
-  window.addEventListener('resize', updateSlider);
+  window.addEventListener('resize', () => {
+    cardsData = getInitialCardsData();
+    current = isMobileOrTabletView() ? 0 : 1;
+    updateSlider();
+  });
 
   // Inicializar
   updateSlider();

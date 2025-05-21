@@ -1165,7 +1165,93 @@ footer {
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
 @media (min-width: 901px) {
-  
+  /* Mantener el orden original y permitir abrir varias cartas a la vez */
+  .slider-gallery-track {
+    justify-content: center;
+    align-items: stretch;
+    gap: 15px;
+    width: 100%;
+    margin: 0 auto;
+    pointer-events: auto;
+    user-select: auto;
+  }
+  .slider-gallery-track .card {
+    /* No hay efecto de "vitrina" ni corrimiento */
+    opacity: 1;
+    transform: none;
+    z-index: 1;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .slider-gallery-track .card.active {
+    /* Elimina el efecto de "activa" para que todas se vean igual cerradas */
+    opacity: 1;
+    transform: none;
+    z-index: 1;
+  }
+  /* Permite abrir varias cartas a la vez */
+  .slider-gallery-track .card.open .card-content {
+    max-height: 800px;
+    opacity: 1;
+    transition: max-height 0.7s cubic-bezier(.4, 0, .2, 1), opacity 0.4s;
+  }
+  .slider-gallery-track .card.open .card-content li {
+    display: flex;
+  }
+.slider-gallery-track .card.open .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: auto;
+    min-height: auto;
+    padding: 10px 0;
+    margin: 0 auto;
+    background: inherit;
+    border-radius: 0px;
+    box-shadow: none;
+    text-align: center;
+    overflow: hidden;
+    transition:
+      max-height 0.4s cubic-bezier(.4, 0, .2, 1),
+      padding 0.4s cubic-bezier(.4, 0, .2, 1),
+      margin 0.4s cubic-bezier(.4, 0, .2, 1);
+  }
+.slider-gallery-track .card.open .card-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.1;
+    transition: font-size 0.4s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .slider-gallery-track .card.open .card-header p {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    transition: opacity 0.25s cubic-bezier(.4, 0, .2, 1), max-height 0.25s cubic-bezier(.4, 0, .2, 1);
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .slider-gallery-track .card.open .card-header {
+    background: inherit !important;
+  }
+  .slider-gallery-track .card.open .card-header.pack-s {
+    background: #d4357c !important;
+    color: #fff;
+  }
+  .slider-gallery-track .card.open .card-header.pack-m {
+    background: var(--secondary) !important;
+    color: #fff;
+  }
+  .slider-gallery-track .card.open .card-header.pack-g {
+    background: #4c4c4c !important;
+    color: #fff;
+  }
   
 }
 

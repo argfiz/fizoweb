@@ -232,7 +232,7 @@ const sliderCardsData = [
   },
   {
     nombre: "Pack M",
-    subtitulo: "Ideal para indecisos",
+    subtitulo: "Ideal para los indecisos",
     precio: "$250.000 ARS",
     precioNota: "Precio Final",
     items: [
@@ -381,20 +381,24 @@ function sliderGalleryInit() {
     // Cards click
     cards.forEach((card, idx) => {
       card.onclick = function(e) {
-        if (idx === current) {
+        if (window.matchMedia('(min-width: 901px)').matches) {
           card.classList.toggle('open');
         } else {
-          if (isMobileOrTabletView()) {
-            // Lleva la carta seleccionada a la vitrina y la anterior al final
-            const selected = cardsData.splice(idx, 1)[0];
-            const prevVitrina = cardsData.shift();
-            cardsData.unshift(selected);
-            cardsData.push(prevVitrina);
-            updateSlider();
+          if (idx === current) {
+            card.classList.toggle('open');
           } else {
-            current = idx;
-            handleInfiniteCorrimiento();
-            updateSlider();
+            if (isMobileOrTabletView()) {
+              // Lleva la carta seleccionada a la vitrina y la anterior al final
+              const selected = cardsData.splice(idx, 1)[0];
+              const prevVitrina = cardsData.shift();
+              cardsData.unshift(selected);
+              cardsData.push(prevVitrina);
+              updateSlider();
+            } else {
+              current = idx;
+              handleInfiniteCorrimiento();
+              updateSlider();
+            }
           }
         }
       };

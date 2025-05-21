@@ -1399,32 +1399,39 @@ footer {
   #home .main-container {
     padding: 0px
   }
+
   .hero-container h1 {
     font-size: 2.3rem;
     padding: 10px;
   }
+
   #home .hero-container h2 {
     font-size: 1.4rem;
     padding: 0 20px;
   }
+
   #home .title-container h3 {
     font-size: 1.3rem;
   }
+
   .hamburger {
     display: flex;
     z-index: 1300;
   }
+
   .navbar-social-button {
     display: none;
   }
+
   .slider-gallery-track .card {
     max-width: 325px;
     min-width: 325px;
   }
+
   .nav-menu {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -100%;
     left: auto;
     bottom: 0;
     width: 82vw;
@@ -1440,13 +1447,33 @@ footer {
     backdrop-filter: blur(14px);
     padding: 48px 0 32px 0;
     gap: 0;
-    transition: right 0.35s cubic-bezier(.4, 0, .2, 1), background 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      right 0.35s cubic-bezier(.4, 0, .2, 1),
+      opacity 0.2s cubic-bezier(.4, 0, .2, 1),
+      background 0.3s;
+    animation: none !important;
+    /* Evita animación al cargar */
+  }
+
+  .nav-menu.active {
+    right: 0;
+    opacity: 1;
+    pointer-events: auto;
     animation: navMenuSlideIn 0.35s;
   }
 
   @keyframes navMenuSlideIn {
-    from { right: -100%; opacity: 0; }
-    to   { right: 0; opacity: 1; }
+    from {
+      right: -100%;
+      opacity: 0;
+    }
+
+    to {
+      right: 0;
+      opacity: 1;
+    }
   }
 
   .nav-links {
@@ -1505,6 +1532,7 @@ footer {
     width: 60%;
   }
 }
+
 @media (max-width: 500px) {
   #home .main-container {
     padding: 0px

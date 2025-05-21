@@ -1437,7 +1437,8 @@ footer {
     width: 82vw;
     max-width: 340px;
     height: 100vh;
-    background: rgba(56, 25, 84, 0.97);
+    background: rgba(56, 25, 84, 0.88);
+    backdrop-filter: blur(14px);
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
     display: flex;
     flex-direction: column;
@@ -1483,13 +1484,16 @@ footer {
     justify-content: center;
     gap: 18px;
     margin: auto 0;
-    padding: 0 24px;
+    padding: 0 0;
+    width: 100%;
   }
 
   .nav-links li {
     width: 100%;
     text-align: center;
     border-bottom: none;
+    display: flex;
+    justify-content: center;
   }
 
   .nav-links a {
@@ -1506,6 +1510,7 @@ footer {
     letter-spacing: 1px;
     display: block;
     position: relative;
+    text-align: center;
   }
 
   .nav-links a:hover,
@@ -1514,6 +1519,7 @@ footer {
     color: #fff;
     box-shadow: 0 2px 12px rgba(247, 37, 133, 0.10);
     outline: none;
+    width: 100%;
   }
 
   .nav-links a::after {

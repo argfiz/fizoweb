@@ -272,7 +272,7 @@ section {
   justify-content: center;
   width: 100%;
   max-width: 900px;
-  margin: 40px auto 0 auto;
+  margin: 0 auto;
   position: relative;
   overflow: visible;
   padding: 0 10px;
@@ -1257,6 +1257,9 @@ footer {
 
 
 @media (max-width: 900px) {
+  #home .main-container {
+    padding: 0px
+  }
   #navbar {
     padding: 15px 20px;
   }
@@ -1377,6 +1380,10 @@ footer {
 
 
 @media (max-width: 700px) {
+  #home .main-container {
+    padding: 0px
+  }
+
   .hamburger {
     display: flex;
     z-index: 1300;
@@ -1416,7 +1423,7 @@ footer {
 
 @media (max-width: 500px) {
   #home .main-container {
-    padding: 10px
+    padding: 0px
   }
 
   #home .title-container h3 {

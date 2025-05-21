@@ -307,23 +307,13 @@ function sliderGalleryInit() {
     return window.matchMedia('(max-width: 500px)').matches;
   }
 
-  // Reordena para que Pack S (sliderCardsData[0]) esté en el centro en desktop/tablet
   function getInitialCardsData() {
-    if (isMobileOrTabletView()) {
-      // Mobile: orden normal
-      return sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
-    } else {
-      // Desktop/tablet: Pack S al centro (posición 1)
-      return [
-        { ...sliderCardsData[1], originalIdx: 1 }, // Pack M
-        { ...sliderCardsData[0], originalIdx: 0 }, // Pack S (centro/vitrina)
-        { ...sliderCardsData[2], originalIdx: 2 }  // Pack G
-      ];
-    }
+    // Siempre mantiene el orden original al iniciar
+    return sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
   }
 
   let cardsData = getInitialCardsData();
-  let current = isMobileOrTabletView() ? 0 : 1; // Mobile: primer card, Desktop/Tablet: centro
+  let current = 0; // Siempre la primera carta es la expuesta (vitrina) en mobile
 
   function updateSlider() {
     renderSliderGallery(cardsData);
@@ -334,8 +324,11 @@ function sliderGalleryInit() {
     if (!cards.length) return;
 
     // Ajusta current según el tamaño de pantalla
-    if (isMobileOrTabletView() && current !== 0) current = 0;
-    if (!isMobileOrTabletView() && current !== 1) current = 1;
+    if (isMobileOrTabletView()) {
+      current = 0; // Siempre la carta en vitrina es la primera
+    } else if (current !== 1) {
+      current = 1; // En desktop, la central
+    }
 
     cards.forEach((card, idx) => {
       card.classList.toggle('active', idx === current);
@@ -345,7 +338,7 @@ function sliderGalleryInit() {
     // --- ANIMACIÓN Y CENTRADO ---
     let moveX = 0;
     if (isMobileOrTabletView()) {
-      moveX = -(current * (cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight)));
+      moveX = 0; // Siempre muestra la primera carta en vitrina
       track.classList.add('changing');
       setTimeout(() => {
         track.classList.remove('changing');
@@ -365,11 +358,22 @@ function sliderGalleryInit() {
     dots.querySelectorAll('.slider-gallery-dot').forEach((dot, idx) => {
       dot.classList.toggle('active', idx === activeOriginalIdx);
       dot.onclick = () => {
-        const newIdx = cardsData.findIndex(c => c.originalIdx === idx);
-        if (newIdx !== -1) {
-          current = newIdx;
-          handleInfiniteCorrimiento();
-          updateSlider();
+        if (isMobileOrTabletView()) {
+          if (idx !== 0) {
+            // Lleva la carta seleccionada a la vitrina y la anterior al final
+            const selected = cardsData.splice(idx, 1)[0];
+            const prevVitrina = cardsData.shift();
+            cardsData.unshift(selected);
+            cardsData.push(prevVitrina);
+            updateSlider();
+          }
+        } else {
+          const newIdx = cardsData.findIndex(c => c.originalIdx === idx);
+          if (newIdx !== -1) {
+            current = newIdx;
+            handleInfiniteCorrimiento();
+            updateSlider();
+          }
         }
       };
     });
@@ -380,15 +384,23 @@ function sliderGalleryInit() {
         if (idx === current) {
           card.classList.toggle('open');
         } else {
-          current = idx;
-          handleInfiniteCorrimiento();
-          updateSlider();
+          if (isMobileOrTabletView()) {
+            // Lleva la carta seleccionada a la vitrina y la anterior al final
+            const selected = cardsData.splice(idx, 1)[0];
+            const prevVitrina = cardsData.shift();
+            cardsData.unshift(selected);
+            cardsData.push(prevVitrina);
+            updateSlider();
+          } else {
+            current = idx;
+            handleInfiniteCorrimiento();
+            updateSlider();
+          }
         }
       };
     });
   }
 
-  // Corrimiento infinito: al seleccionar un extremo, ese pack va al centro y el otro extremo rota para dar efecto infinito
   function handleInfiniteCorrimiento() {
     if (current === 0) {
       cardsData = [cardsData[2], cardsData[0], cardsData[1]];
@@ -405,7 +417,6 @@ function sliderGalleryInit() {
     updateSlider();
   });
 
-  // Inicializar
   updateSlider();
 }
 

@@ -280,8 +280,6 @@ section {
 
 .slider-gallery-track {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 24px;
   width: auto;
   margin: 0 auto;
@@ -1167,27 +1165,8 @@ footer {
 /* ========================== MEDIA QUERIES AL FINAL ========================== */
 
 @media (min-width: 901px) {
-  .slider-gallery-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 900px;
-    margin: 40px auto 0 auto;
-    position: relative;
-    overflow: visible;
-    padding: 0 10px;
-  }
-  .slider-gallery-track {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    width: 100%;
-    margin: 0 auto;
-    /* Centrado respecto a su contenedor */
-  }
+  
+  
 }
 
 

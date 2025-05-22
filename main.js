@@ -233,7 +233,7 @@ const sliderCardsData = [
   {
     nombre: "Pack M",
     subtitulo: "Ideal para los indecisos",
-    precio: "$250.000 ARS",
+    precio: "$250.0000 ARS",
     precioNota: "Precio Final",
     items: [
       "3 Página",
@@ -330,6 +330,7 @@ function sliderGalleryInit() {
       current = 1; // En desktop, la central
     }
 
+    // --- ACTUALIZAR CLASES DE LAS CARTAS ---
     cards.forEach((card, idx) => {
       card.classList.toggle('active', idx === current);
       if (idx !== current) card.classList.remove('open');

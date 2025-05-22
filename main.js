@@ -283,6 +283,11 @@ function renderSliderGallery(cardsData) {
       <div class="card-header ${packClass(pack.nombre)}">
         <h2>${pack.nombre.replace('Pack ', 'Pack <span>') + '</span>'}</h2>
         <p>${pack.subtitulo}</p>
+        <span class="card-arrow-indicator" aria-hidden="true">
+          <svg width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L14 16L26 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
       </div>
       <div class="card-content">
         <ul>

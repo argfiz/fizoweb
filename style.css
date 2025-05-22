@@ -1085,6 +1085,25 @@ footer {
   background-color: var(--light-gray);
 }
 
+/* Flechita bajo el subtítulo del header */
+.card-header .card-arrow-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  width: 100%;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), color 0.3s;
+  color: #fff;
+  transform: rotate(0deg);
+}
+
+/* Gira la flecha cuando la card está abierta */
+.card.open .card-header .card-arrow-indicator {
+  transform: rotate(180deg);
+  color: var(#fff, #f72585);
+}
+
 /* Quitar animación de fadeIn solo a las cards del slider-gallery-track */
 .slider-gallery-track .card {
   animation: none !important;

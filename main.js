@@ -280,9 +280,7 @@ function renderCards() {
     if (card.nombre.includes('Pack G')) packClass = 'pack-g';
     return `
       <article class="card">
-        <aside class="card__aside">
-          <figure class="card__figure"></figure>
-        </aside>
+        
         <header class="card__header ${packClass}">
           <h2 class="card__title">${card.nombre}</h2>
           <h3 class="card__subtitle">${card.subtitulo}</h3>

@@ -1365,7 +1365,11 @@ footer {
   }
 }
 
-
+@media (min-width: 721px) {
+  .footer-links {
+    display: none !important;
+  }
+}
 @media (max-width: 720px) {
   #home .main-container {
     padding: 0px
@@ -1517,6 +1521,7 @@ footer {
     order: -1;
     max-width: 400px;
   }
+  
  
 }
 

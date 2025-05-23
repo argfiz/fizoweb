@@ -379,7 +379,7 @@ section {
 
 .card-header {
   color: #fff;
-  padding: 5px 28px 18px 28px;
+  padding: 28px 18px 28px;
   border-radius: 0px;
   width: 100%;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
@@ -1585,8 +1585,8 @@ footer {
   }
 
   .slider-gallery-track .card {
-    max-width: 325px;
-    min-width: 325px;
+    max-width: 340px;
+    min-width: 340px;
     transition:
       max-width 0.4s cubic-bezier(.4, 0, .2, 1),
       min-width 0.4s cubic-bezier(.4, 0, .2, 1),

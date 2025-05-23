@@ -316,38 +316,34 @@ function sliderGalleryInit() {
   }
 
   function getInitialCardsData() {
-    // Siempre mantiene el orden original al iniciar
     return sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
   }
 
   let cardsData = getInitialCardsData();
-  let current = 0; // Siempre la primera carta es la expuesta (vitrina) en mobile
+  let current = 0;
 
   function updateSlider() {
     renderSliderGallery(cardsData);
     const track = document.getElementById('sliderGalleryTrack');
-    const dots = document.getElementById('sliderGalleryDots');
     const cards = Array.from(track.children);
 
     if (!cards.length) return;
 
-    // Ajusta current según el tamaño de pantalla
     if (isMobileOrTabletView()) {
-      current = 0; // Siempre la carta en vitrina es la primera
+      current = 0;
     } else if (current !== 1) {
-      current = 1; // En desktop, la central
+      current = 1;
     }
 
-    // --- ACTUALIZAR CLASES DE LAS CARTAS ---
     cards.forEach((card, idx) => {
       card.classList.toggle('active', idx === current);
       if (idx !== current) card.classList.remove('open');
     });
 
-    // --- ANIMACIÓN Y CENTRADO ---
+    // Centrado/animación
     let moveX = 0;
     if (isMobileOrTabletView()) {
-      moveX = 0; // Siempre muestra la primera carta en vitrina
+      moveX = 0;
       track.classList.add('changing');
       setTimeout(() => {
         track.classList.remove('changing');
@@ -362,68 +358,165 @@ function sliderGalleryInit() {
     }
     track.style.transform = `translateX(${moveX}px)`;
 
-    // Dots
-    const activeOriginalIdx = cardsData[current].originalIdx;
-    dots.querySelectorAll('.slider-gallery-dot').forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === activeOriginalIdx);
-      dot.onclick = () => {
-        if (isMobileOrTabletView()) {
-          if (idx !== 0) {
-            // Lleva la carta seleccionada a la vitrina y la anterior al final
-            const selected = cardsData.splice(idx, 1)[0];
-            const prevVitrina = cardsData.shift();
-            cardsData.unshift(selected);
-            cardsData.push(prevVitrina);
-            updateSlider();
-          }
-        } else {
-          const newIdx = cardsData.findIndex(c => c.originalIdx === idx);
-          if (newIdx !== -1) {
-            current = newIdx;
-            handleInfiniteCorrimiento();
-            updateSlider();
-          }
-        }
-      };
-    });
-
-    // Cards click
+    // --- EVENTOS SOLO EN HIJOS ---
     cards.forEach((card, idx) => {
-      card.onclick = function(e) {
-        if (window.matchMedia('(min-width: 901px)').matches) {
-          card.classList.toggle('open');
-        } else {
-          if (idx === current) {
-            card.classList.toggle('open');
+      const header = card.querySelector('.card-header');
+      const price = card.querySelector('.card-price-container');
+      const content = card.querySelector('.card-content');
+      const moreIndicator = card.querySelector('.card-more-indicator');
+
+      // Limpia eventos previos
+      [header, price, content, moreIndicator].forEach(el => {
+        if (!el) return;
+        el.onclick = null;
+        el.ontouchstart = null;
+        el.ontouchmove = null;
+        el.ontouchend = null;
+      });
+
+      // --- HEADER ---
+      if (header) {
+        header.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (isMobileOrTabletView()) {
+            // SOLO ABRE si está cerrada, NO cierra si está abierta
+            if (!card.classList.contains('open')) {
+              if (idx === 0) {
+                card.classList.add('open');
+              } else {
+                const selected = cardsData.splice(idx, 1)[0];
+                const prevVitrina = cardsData.shift();
+                cardsData.unshift(selected);
+                cardsData.push(prevVitrina);
+                updateSlider();
+              }
+            }
           } else {
-            if (isMobileOrTabletView()) {
-              // Lleva la carta seleccionada a la vitrina y la anterior al final
+            card.classList.toggle('open');
+          }
+        });
+      }
+
+      // --- PRICE-CONTAINER ---
+      if (price) {
+        price.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (isMobileOrTabletView()) {
+            // SOLO ABRE si está cerrada, NO cierra si está abierta
+            if (!card.classList.contains('open')) {
+              if (idx === 0) {
+                card.classList.add('open');
+              } else {
+                const selected = cardsData.splice(idx, 1)[0];
+                const prevVitrina = cardsData.shift();
+                cardsData.unshift(selected);
+                cardsData.push(prevVitrina);
+                updateSlider();
+              }
+            }
+          } else {
+            card.classList.toggle('open');
+          }
+        });
+      }
+
+      // --- CARD-CONTENT ---
+      if (content) {
+        let touchStartY = 0;
+        let touchMoved = false;
+
+        content.addEventListener('touchstart', function(e) {
+          touchMoved = false;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        content.addEventListener('touchmove', function(e) {
+          if (Math.abs(e.touches[0].clientY - touchStartY) > 10) {
+            touchMoved = true;
+          }
+        }, { passive: true });
+
+        content.addEventListener('touchend', function(e) {
+          if (touchMoved) return;
+          e.stopPropagation();
+          if (isMobileOrTabletView()) {
+            if (idx === 0) {
+              card.classList.toggle('open');
+            } else {
               const selected = cardsData.splice(idx, 1)[0];
               const prevVitrina = cardsData.shift();
               cardsData.unshift(selected);
               cardsData.push(prevVitrina);
               updateSlider();
-            } else {
-              current = idx;
-              handleInfiniteCorrimiento();
-              updateSlider();
             }
+          } else {
+            card.classList.toggle('open');
           }
+        });
+
+        // Elimina el evento click en móvil para evitar doble tap
+        if (isMobileOrTabletView()) {
+          content.onclick = null;
+        } else {
+          content.addEventListener('click', function(e) {
+            e.stopPropagation();
+            card.classList.toggle('open');
+          });
         }
-      };
+      }
+
+      // --- TRES PUNTITOS ---
+      if (moreIndicator) {
+        moreIndicator.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (isMobileOrTabletView()) {
+            if (!card.classList.contains('open')) {
+              if (idx === 0) {
+                card.classList.add('open');
+              } else {
+                const selected = cardsData.splice(idx, 1)[0];
+                const prevVitrina = cardsData.shift();
+                cardsData.unshift(selected);
+                cardsData.push(prevVitrina);
+                updateSlider();
+              }
+            }
+          } else {
+            card.classList.toggle('open');
+          }
+        });
+
+        moreIndicator.addEventListener('touchend', function(e) {
+          e.stopPropagation();
+          if (isMobileOrTabletView()) {
+            if (!card.classList.contains('open')) {
+              if (idx === 0) {
+                card.classList.add('open');
+              } else {
+                const selected = cardsData.splice(idx, 1)[0];
+                const prevVitrina = cardsData.shift();
+                cardsData.unshift(selected);
+                cardsData.push(prevVitrina);
+                updateSlider();
+              }
+            }
+          } else {
+            card.classList.toggle('open');
+          }
+        });
+      }
     });
 
+    // --- OCULTAR LOS TRES PUNTOS AL FINAL DEL SCROLL ---
     if (isMobileOrTabletView()) {
       cards.forEach(card => {
         const content = card.querySelector('.card-content');
         const moreIndicator = card.querySelector('.card-more-indicator');
         if (content && moreIndicator) {
-          // Mostrar los puntos por defecto
           moreIndicator.style.opacity = '1';
           moreIndicator.style.pointerEvents = 'auto';
 
           content.addEventListener('scroll', function () {
-            // ¿Está scrolleado al final?
             const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
             if (atBottom) {
               moreIndicator.style.opacity = '0';
@@ -434,7 +527,6 @@ function sliderGalleryInit() {
             }
           });
 
-          // Al abrir la card, restablece los puntos si no está al fondo
           card.addEventListener('transitionend', function (e) {
             if (e.target === content && card.classList.contains('open')) {
               const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;

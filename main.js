@@ -294,6 +294,9 @@ function renderSliderGallery(cardsData) {
           ${pack.items.map(item => `<li><p>${item}</p></li>`).join('')}
         </ul>
       </div>
+      <div class="card-more-indicator" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
       <div class="card-price-container ${packClass(pack.nombre)}">
         <p class="card-price">${pack.precio}</p>
         <span>${pack.precioNota}</span>
@@ -409,6 +412,38 @@ function sliderGalleryInit() {
         }
       };
     });
+
+    if (isMobileOrTabletView()) {
+      cards.forEach(card => {
+        const content = card.querySelector('.card-content');
+        const moreIndicator = card.querySelector('.card-more-indicator');
+        if (content && moreIndicator) {
+          // Mostrar los puntos por defecto
+          moreIndicator.style.opacity = '1';
+          moreIndicator.style.pointerEvents = 'auto';
+
+          content.addEventListener('scroll', function () {
+            // ¿Está scrolleado al final?
+            const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
+            if (atBottom) {
+              moreIndicator.style.opacity = '0';
+              moreIndicator.style.pointerEvents = 'none';
+            } else {
+              moreIndicator.style.opacity = '1';
+              moreIndicator.style.pointerEvents = 'auto';
+            }
+          });
+
+          // Al abrir la card, restablece los puntos si no está al fondo
+          card.addEventListener('transitionend', function (e) {
+            if (e.target === content && card.classList.contains('open')) {
+              const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
+              moreIndicator.style.opacity = atBottom ? '0' : '1';
+            }
+          });
+        }
+      });
+    }
   }
 
   function handleInfiniteCorrimiento() {

@@ -1521,6 +1521,7 @@ footer {
 }
 
 @media (max-width: 500px) {
+  
   #home .main-container {
     padding: 0px
   }
@@ -1708,6 +1709,12 @@ footer {
 
   .slider-gallery-track .card .card-more-indicator {
     transition: opacity 0.3s;
+  }
+  .footer-links {
+    gap: 10px;
+  }
+  .footer-links a {
+    font-size: 0.9rem;
   }
 }
 

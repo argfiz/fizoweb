@@ -213,7 +213,7 @@ document.querySelectorAll('.service-pill').forEach(pill => {
 /* ======================================== SLIDER RESPONSIVO CON DOTS ============================= */
 /*****************************************************************************************************/
 const sliderCardsData = [
-  {
+  { 
     nombre: "Pack S",
     subtitulo: "Oportuno para emprendedores",
     precio: "$150.000 ARS",
@@ -266,295 +266,111 @@ const sliderCardsData = [
   }
 ];
 
-function renderSliderGallery(cardsData) {
-  const track = document.getElementById('sliderGalleryTrack');
-  const dots = document.getElementById('sliderGalleryDots');
-  if (!track || !dots) return;
+const cardsData = sliderCardsData;
 
-  const packClass = (nombre) => {
-    if (nombre.includes('Pack S')) return 'pack-s';
-    if (nombre.includes('Pack M')) return 'pack-m';
-    if (nombre.includes('Pack G')) return 'pack-g';
-    return '';
-  };
+const track = document.getElementById('sliderGalleryTrack');
+const dotsContainer = document.getElementById('sliderGalleryDots');
+let current = 0;
 
-  track.innerHTML = cardsData.map((pack, idx) => `
-    <article class="card ${packClass(pack.nombre)}" data-idx="${idx}" data-original-idx="${pack.originalIdx ?? idx}">
-      <div class="card-header ${packClass(pack.nombre)}">
-        <h2>${pack.nombre.replace('Pack ', 'Pack <span>') + '</span>'}</h2>
-        <p>${pack.subtitulo}</p>
-        <span class="card-arrow-indicator" aria-hidden="true">
-          <svg width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L14 16L26 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-      </div>
-      <div class="card-content">
-        <ul>
-          ${pack.items.map(item => `<li><p>${item}</p></li>`).join('')}
-        </ul>
-      </div>
-      <div class="card-more-indicator" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-      <div class="card-price-container ${packClass(pack.nombre)}">
-        <p class="card-price">${pack.precio}</p>
-        <span>${pack.precioNota}</span>
-      </div>
-    </article>
-  `).join('');
-
-  // Los dots SIEMPRE representan el orden original
-  dots.innerHTML = sliderCardsData.map((_, idx) =>
-    `<button class="slider-gallery-dot" data-dot="${idx}" aria-label="Ir a la carta ${idx + 1}"></button>`
-  ).join('');
+function renderCards() {
+  track.innerHTML = cardsData.map(card => {
+    let packClass = '';
+    if (card.nombre.includes('Pack S')) packClass = 'pack-s';
+    if (card.nombre.includes('Pack M')) packClass = 'pack-m';
+    if (card.nombre.includes('Pack G')) packClass = 'pack-g';
+    return `
+      <article class="card">
+        <aside class="card__aside">
+          <figure class="card__figure"></figure>
+        </aside>
+        <header class="card__header ${packClass}">
+          <h2 class="card__title">${card.nombre}</h2>
+          <h3 class="card__subtitle">${card.subtitulo}</h3>
+        </header>
+        <div class="card__body">
+          <ul>
+            ${card.items.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+        <footer class="card__footer ${packClass}">
+          <div class="card__actions">
+            <p class="card__copy">${card.precio} <br><span>${card.precioNota}</span></p>
+          </div>
+        </footer>
+      </article>
+    `;
+  }).join('');
 }
 
-function sliderGalleryInit() {
-  function isMobileOrTabletView() {
-    return window.matchMedia('(max-width: 500px)').matches;
-  }
-
-  function getInitialCardsData() {
-    return sliderCardsData.map((c, idx) => ({ ...c, originalIdx: idx }));
-  }
-
-  let cardsData = getInitialCardsData();
-  let current = 0;
-
-  function updateSlider() {
-    renderSliderGallery(cardsData);
-    const track = document.getElementById('sliderGalleryTrack');
-    const cards = Array.from(track.children);
-
-    if (!cards.length) return;
-
-    if (isMobileOrTabletView()) {
-      current = 0;
-    } else if (current !== 1) {
-      current = 1;
-    }
-
-    cards.forEach((card, idx) => {
-      card.classList.toggle('active', idx === current);
-      if (idx !== current) card.classList.remove('open');
-    });
-
-    // Centrado/animación
-    let moveX = 0;
-    if (isMobileOrTabletView()) {
-      moveX = 0;
-      track.classList.add('changing');
-      setTimeout(() => {
-        track.classList.remove('changing');
-      }, 400);
-    } else {
-      const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginLeft) + parseInt(getComputedStyle(cards[0]).marginRight);
-      const container = track.parentElement;
-      const containerWidth = container.offsetWidth;
-      const centerOffset = (containerWidth - cardWidth) / 2;
-      moveX = centerOffset - (current * cardWidth);
-      track.classList.remove('changing');
-    }
-    track.style.transform = `translateX(${moveX}px)`;
-
-    // --- EVENTOS SOLO EN HIJOS ---
-    cards.forEach((card, idx) => {
-      const header = card.querySelector('.card-header');
-      const price = card.querySelector('.card-price-container');
-      const content = card.querySelector('.card-content');
-      const moreIndicator = card.querySelector('.card-more-indicator');
-
-      // Limpia eventos previos
-      [header, price, content, moreIndicator].forEach(el => {
-        if (!el) return;
-        el.onclick = null;
-        el.ontouchstart = null;
-        el.ontouchmove = null;
-        el.ontouchend = null;
-      });
-
-      // --- HEADER ---
-      if (header) {
-        header.addEventListener('click', function(e) {
-          e.stopPropagation();
-          if (isMobileOrTabletView()) {
-            // SOLO ABRE si está cerrada, NO cierra si está abierta
-            if (!card.classList.contains('open')) {
-              if (idx === 0) {
-                card.classList.add('open');
-              } else {
-                const selected = cardsData.splice(idx, 1)[0];
-                const prevVitrina = cardsData.shift();
-                cardsData.unshift(selected);
-                cardsData.push(prevVitrina);
-                updateSlider();
-              }
-            }
-          } else {
-            card.classList.toggle('open');
-          }
-        });
-      }
-
-      // --- PRICE-CONTAINER ---
-      if (price) {
-        price.addEventListener('click', function(e) {
-          e.stopPropagation();
-          if (isMobileOrTabletView()) {
-            // SOLO ABRE si está cerrada, NO cierra si está abierta
-            if (!card.classList.contains('open')) {
-              if (idx === 0) {
-                card.classList.add('open');
-              } else {
-                const selected = cardsData.splice(idx, 1)[0];
-                const prevVitrina = cardsData.shift();
-                cardsData.unshift(selected);
-                cardsData.push(prevVitrina);
-                updateSlider();
-              }
-            }
-          } else {
-            card.classList.toggle('open');
-          }
-        });
-      }
-
-      // --- CARD-CONTENT ---
-      if (content) {
-        let touchStartY = 0;
-        let touchMoved = false;
-
-        content.addEventListener('touchstart', function(e) {
-          touchMoved = false;
-          touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        content.addEventListener('touchmove', function(e) {
-          if (Math.abs(e.touches[0].clientY - touchStartY) > 10) {
-            touchMoved = true;
-          }
-        }, { passive: true });
-
-        content.addEventListener('touchend', function(e) {
-          if (touchMoved) return;
-          e.stopPropagation();
-          if (isMobileOrTabletView()) {
-            if (idx === 0) {
-              card.classList.toggle('open');
-            } else {
-              const selected = cardsData.splice(idx, 1)[0];
-              const prevVitrina = cardsData.shift();
-              cardsData.unshift(selected);
-              cardsData.push(prevVitrina);
-              updateSlider();
-            }
-          } else {
-            card.classList.toggle('open');
-          }
-        });
-
-        // Elimina el evento click en móvil para evitar doble tap
-        if (isMobileOrTabletView()) {
-          content.onclick = null;
-        } else {
-          content.addEventListener('click', function(e) {
-            e.stopPropagation();
-            card.classList.toggle('open');
-          });
-        }
-      }
-
-      // --- TRES PUNTITOS ---
-      if (moreIndicator) {
-        moreIndicator.addEventListener('click', function(e) {
-          e.stopPropagation();
-          if (isMobileOrTabletView()) {
-            if (!card.classList.contains('open')) {
-              if (idx === 0) {
-                card.classList.add('open');
-              } else {
-                const selected = cardsData.splice(idx, 1)[0];
-                const prevVitrina = cardsData.shift();
-                cardsData.unshift(selected);
-                cardsData.push(prevVitrina);
-                updateSlider();
-              }
-            }
-          } else {
-            card.classList.toggle('open');
-          }
-        });
-
-        moreIndicator.addEventListener('touchend', function(e) {
-          e.stopPropagation();
-          if (isMobileOrTabletView()) {
-            if (!card.classList.contains('open')) {
-              if (idx === 0) {
-                card.classList.add('open');
-              } else {
-                const selected = cardsData.splice(idx, 1)[0];
-                const prevVitrina = cardsData.shift();
-                cardsData.unshift(selected);
-                cardsData.push(prevVitrina);
-                updateSlider();
-              }
-            }
-          } else {
-            card.classList.toggle('open');
-          }
-        });
-      }
-    });
-
-    // --- OCULTAR LOS TRES PUNTOS AL FINAL DEL SCROLL ---
-    if (isMobileOrTabletView()) {
-      cards.forEach(card => {
-        const content = card.querySelector('.card-content');
-        const moreIndicator = card.querySelector('.card-more-indicator');
-        if (content && moreIndicator) {
-          moreIndicator.style.opacity = '1';
-          moreIndicator.style.pointerEvents = 'auto';
-
-          content.addEventListener('scroll', function () {
-            const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
-            if (atBottom) {
-              moreIndicator.style.opacity = '0';
-              moreIndicator.style.pointerEvents = 'none';
-            } else {
-              moreIndicator.style.opacity = '1';
-              moreIndicator.style.pointerEvents = 'auto';
-            }
-          });
-
-          card.addEventListener('transitionend', function (e) {
-            if (e.target === content && card.classList.contains('open')) {
-              const atBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - 2;
-              moreIndicator.style.opacity = atBottom ? '0' : '1';
-            }
-          });
-        }
-      });
-    }
-  }
-
-  function handleInfiniteCorrimiento() {
-    if (current === 0) {
-      cardsData = [cardsData[2], cardsData[0], cardsData[1]];
-      current = 1;
-    } else if (current === 2) {
-      cardsData = [cardsData[1], cardsData[2], cardsData[0]];
-      current = 1;
-    }
-  }
-
-  window.addEventListener('resize', () => {
-    cardsData = getInitialCardsData();
-    current = isMobileOrTabletView() ? 0 : 1;
-    updateSlider();
+function renderDots() {
+  dotsContainer.innerHTML = cardsData.map((_, idx) =>
+    `<button class="slider-gallery-dot${idx === current ? ' active' : ''}" data-idx="${idx}" aria-label="Ir a la carta ${idx + 1}"></button>`
+  ).join('');
+  dotsContainer.querySelectorAll('button').forEach(btn => {
+    btn.onclick = () => {
+      current = Number(btn.dataset.idx);
+      updateSlider();
+    };
   });
+}
 
+function updateSlider() {
+  const cardWidth = track.children[0].offsetWidth;
+  track.style.transform = `translateX(${-current * cardWidth}px)`;
+  renderDots();
+}
+
+function nextCard() {
+  current = (current + 1) % cardsData.length;
+  updateSlider();
+}
+function prevCard() {
+  current = (current - 1 + cardsData.length) % cardsData.length;
   updateSlider();
 }
 
-document.addEventListener('DOMContentLoaded', sliderGalleryInit);
+// Inicialización
+renderCards();
+renderDots();
+updateSlider();
+
+window.addEventListener('resize', updateSlider);
+
+// Implementación del arrastre
+let startX = 0;
+let isDragging = false;
+
+track.addEventListener('pointerdown', (e) => {
+  isDragging = true;
+  startX = e.clientX;
+  track.style.cursor = 'grabbing';
+});
+
+track.addEventListener('pointermove', (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - startX;
+  track.style.transform = `translateX(${-current * track.children[0].offsetWidth + dx}px)`;
+});
+
+track.addEventListener('pointerup', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  track.style.cursor = '';
+  const dx = e.clientX - startX;
+  const threshold = track.children[0].offsetWidth / 4;
+  if (dx > threshold) {
+    prevCard();
+  } else if (dx < -threshold) {
+    nextCard();
+  } else {
+    updateSlider();
+  }
+});
+
+track.addEventListener('pointerleave', () => {
+  if (isDragging) {
+    isDragging = false;
+    track.style.cursor = '';
+    updateSlider();
+  }
+});

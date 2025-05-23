@@ -1836,3 +1836,22 @@ footer {
 }
 
 /* Si tienes más cartas, puedes seguir sumando delays */
+
+/* Colores personalizados para cada pack en el header y el footer */
+.card__header.pack-s,
+.card__footer.pack-s {
+  background: #d4357c;
+  color: #fff;
+}
+
+.card__header.pack-m,
+.card__footer.pack-m {
+  background: var(--secondary);
+  color: #fff;
+}
+
+.card__header.pack-l,
+.card__footer.pack-l {
+  background: #4c4c4c;
+  color: #fff;
+}

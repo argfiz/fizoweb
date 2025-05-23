@@ -248,7 +248,7 @@ const sliderCardsData = [
     ]
   },
   {
-    nombre: "Pack G",
+    nombre: "Pack L",
     subtitulo: "Para tu negocio",
     precio: "$350.000 ARS",
     precioNota: "Precio Final",
@@ -277,7 +277,7 @@ function renderCards() {
     let packClass = '';
     if (card.nombre.includes('Pack S')) packClass = 'pack-s';
     if (card.nombre.includes('Pack M')) packClass = 'pack-m';
-    if (card.nombre.includes('Pack G')) packClass = 'pack-g';
+    if (card.nombre.includes('Pack L')) packClass = 'pack-l';
     return `
       <article class="card">
         
@@ -368,7 +368,7 @@ track.addEventListener('pointerup', (e) => {
   isDragging = false;
   track.style.cursor = '';
   const dx = e.clientX - startX;
-  const threshold = track.children[0].offsetWidth / 4;
+  const threshold = track.children[0].offsetWidth / 5;
   if (dx > threshold) {
     prevCard();
   } else if (dx < -threshold) {

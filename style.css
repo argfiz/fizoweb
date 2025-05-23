@@ -282,9 +282,7 @@ section {
   display: flex;
   gap: 24px;
   width: auto;
-  margin: 15px auto;
-  
-  /*Esto permite el deslizamiento horizontal personalizado y deja el scroll vertical:*/
+  margin: 0px auto;
   touch-action: pan-y;
   -ms-touch-action: pan-y;
   user-select: none;
@@ -298,7 +296,12 @@ section {
     box-shadow 0.4s cubic-bezier(.4, 0, .2, 1),
     opacity 0.3s;
   will-change: transform, opacity;
+  opacity: 0;
+  animation: sliderCardFadeIn 0.7s cubic-bezier(.4, 0, .2, 1) forwards;
 }
+.slider-gallery-track .card:nth-child(1) { animation-delay: 0.05s; }
+.slider-gallery-track .card:nth-child(2) { animation-delay: 0.15s; }
+.slider-gallery-track .card:nth-child(3) { animation-delay: 0.25s; }
 
 .slider-gallery-container .card {
   min-width: 320px;
@@ -332,38 +335,11 @@ section {
   cursor: pointer;
   transition: background 0.2s;
 }
-
 .slider-gallery-dot.active {
   background: var(--accent, #f72585);
 }
 
-/* Opcional: animación de opacidad al cambiar de carta */
-.slider-gallery-track.changing {
-  opacity: 0.7;
-  transition:
-    opacity 0.25s cubic-bezier(.4, 0, .2, 1),
-    transform 0.6s cubic-bezier(.4, 0, .2, 1),
-    -webkit-transform 0.6s cubic-bezier(.4, 0, .2, 1);
-}
-
-.slider-gallery-track:not(.changing) {
-  opacity: 1;
-  transition:
-    opacity 0.25s cubic-bezier(.4, 0, .2, 1),
-    transform 0.6s cubic-bezier(.4, 0, .2, 1),
-    -webkit-transform 0.6s cubic-bezier(.4, 0, .2, 1);
-}
-
 /* ========================================= PACK CARDS =============================================*/
-.cards__container {
-  display: flex;
-  align-content: flex-start;
-  justify-content: center;
-  gap: 25px;
-  padding: 0px;
-  flex-wrap: wrap;
-}
-
 .card {
   background-color: white;
   box-shadow: var(--box-shadow);
@@ -372,9 +348,8 @@ section {
   height: fit-content;
   cursor: pointer;
   overflow: hidden;
-  max-width: 280px;
-  min-width: 280px;
-  border-radius: 50x;
+  max-width: 320px;
+  min-width: 320px;
 }
 
 .card:hover {
@@ -383,160 +358,106 @@ section {
 }
 
 .card__header {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+  color: #fff;
+  padding: 10px 18px 10px 18px;
   border-radius: 0px;
   width: 100%;
-  box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
+  box-shadow: 0 6px 24px rgba(67, 97, 238, 0.13);
   position: relative;
-  overflow: hidden;
-  
-}
-
-.card__header.pack-s,
-.card-price-container.pack-s {
-  background: #d4357c;
-  color: #fff;
-}
-
-.card__header.pack-m,
-.card-price-container.pack-m {
-  background: var(--secondary);
-  color: #fff;
-}
-
-.card__header.pack-g,
-.card-price-container.pack-g {
-  background: #4c4c4c;
-  color: #fff;
-}
-
-.card__header h2 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 0;
+  transition:
+    background 0.4s cubic-bezier(.4, 0, .2, 1),
+    box-shadow 0.4s cubic-bezier(.4, 0, .2, 1),
+    border-radius 0.4s cubic-bezier(.4, 0, .2, 1);
   z-index: 1;
-  position: relative;
-  text-shadow: 0 4px 16px rgba(50, 50, 93, 0.18), 0 1px 0 #fff;
-  background-clip: text;
-  padding-bottom: 4px;
+  overflow: visible;
+}
+
+.card__header.pack-s { background: #d4357c; }
+.card__header.pack-m { background: var(--secondary); }
+.card__header.pack-l { background: #4c4c4c; }
+
+.card__header::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.card__title,
+.card__header h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  background-clip: initial;
+  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
   display: inline-block;
 }
 
-.card__header h2 span {
-  font-size: 4rem;
-  font-weight: 900;
-  background: red;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding: 0 10px;
-  margin-left: 6px;
-  filter: drop-shadow(0 2px 8px rgba(247, 37, 133, 0.10));
-  border-radius: 0.3em;
-  vertical-align: middle;
-}
-
-.card__header p {
+.card__subtitle,
+.card__header h3 {
   font-size: 1.4rem;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.13);
-  padding: 4px 8px;
-  border-radius: 1em 0 1em 0;
-  display: inline-block;
-  z-index: 1;
-  position: relative;
+  color: #fff;
+  opacity: 0.92;
   letter-spacing: 1px;
-  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
-  width: 100%;
-  text-align: center;
+  text-shadow: 0 1px 4px rgba(67, 97, 238, 0.10);
 }
 
-.card-content {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(.4, 0, .2, 1), opacity 0.3s;
-}
-
-.card-content li {
-  display: none;
-}
-
-.card-content li:nth-child(-n+4) {
-  display: flex;
-}
-
-.card.open .card-content {
-  max-height: 800px;
-  opacity: 1;
-  transition: max-height 0.7s cubic-bezier(.4, 0, .2, 1), opacity 0.4s;
-}
-
-.card.open .card-content li {
-  display: flex;
-}
-
-.card ul {
+.card__body ul {
   padding: 20px;
 }
-
-.card li {
+.card__body li {
   padding: 10px 0;
   border-bottom: 1px solid var(--light-gray);
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
-
-.card li:last-child {
+.card__body li:last-child {
   border-bottom: none;
 }
 
-.card li::before {
+/* TILDE VERDE */
+.card__body li::before {
   content: '✓';
   color: var(--success);
   margin-right: 10px;
   font-weight: bold;
 }
 
-.card-price-container {
-  text-align: center;
+.card__footer {
   background: var(--dark);
-  padding: 10px 0px 20px 0px;
-  width: 100%;
-  box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
-  position: relative;
-  overflow: hidden;
-  margin-top: 18px;
+  color: #fff;
+  text-align: center;
+  padding: 12px 0 18px 0;
 }
 
-.card__footer {
+
+.card__actions { margin: 0; }
+.card__copy {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.1em;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
-  z-index: 1;
-  position: relative;
+  margin-top: 5px; 
 }
-.card__footer .card__copy {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
-  margin-top: 3px;
-
-}
-.card__footer .card__copy span {
-  font-size: 1.2rem;
-  font-weight: 600;
-  z-index: 1;
-  position: relative;
+.card__copy span {
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin-top: -10px;
   letter-spacing: 2px;
-  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
-  color: #fff;
-  margin-top: -5px;
 }
 
 /* =================================== SECTION SERVICES ============================================ */
@@ -1096,12 +1017,6 @@ footer {
   background-color: var(--light-gray);
 }
 
-
-
-
-
-
-
 /* Mantener animación para otras cards si lo deseas */
 .hero-container,
 .mini-card {
@@ -1260,24 +1175,7 @@ footer {
     overflow: hidden;
   }
 
-  .slider-gallery-track .card.open .card-header {
-    background: inherit !important;
-  }
-
-  .slider-gallery-track .card.open .card-header.pack-s {
-    background: #d4357c !important;
-    color: #fff;
-  }
-
-  .slider-gallery-track .card.open .card-header.pack-m {
-    background: var(--secondary) !important;
-    color: #fff;
-  }
-
-  .slider-gallery-track .card.open .card-header.pack-g {
-    background: #4c4c4c !important;
-    color: #fff;
-  }
+  
 
 }
 
@@ -1729,7 +1627,7 @@ footer {
     background: var(--secondary);
   }
 
-  .slider-gallery-track .card.pack-g .card-more-indicator span {
+  .slider-gallery-track .card.pack-l .card-more-indicator span {
     color: #4c4c4c;
     background: #4c4c4c;
   }
@@ -1839,18 +1737,7 @@ footer {
   margin: 0;
 }
 
-.card__copy {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0;
-}
 
-.card__copy span {
-  font-size: 1rem;
-  font-weight: 400;
-  display: block;
-  margin-top: 2px;
-}
 
 /* Embellecimiento del card-header */
 .card__header {
@@ -1914,22 +1801,6 @@ footer {
   margin-right: 6px;
   font-size: 1.1em;
   vertical-align: middle;
-}
-
-/* El footer toma el color del header según el pack */
-.card__footer.pack-s {
-  background: #d4357c;
-  color: #fff;
-}
-
-.card__footer.pack-m {
-  background: var(--secondary);
-  color: #fff;
-}
-
-.card__footer.pack-g {
-  background: #4c4c4c;
-  color: #fff;
 }
 
 /* ================= SLIDER CARD LOADING ANIMATION ================ */

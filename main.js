@@ -215,7 +215,7 @@ document.querySelectorAll('.service-pill').forEach(pill => {
 const sliderCardsData = [
   { 
     nombre: "Pack S",
-    subtitulo: "Oportuno para emprendedores",
+    subtitulo: "Para emprendedores",
     precio: "$150.000 ARS",
     precioNota: "Precio Final",
     items: [
@@ -232,7 +232,7 @@ const sliderCardsData = [
   },
   {
     nombre: "Pack M",
-    subtitulo: "Ideal para los indecisos",
+    subtitulo: "Para los indecisos",
     precio: "$250.0000 ARS",
     precioNota: "Precio Final",
     items: [
@@ -249,7 +249,7 @@ const sliderCardsData = [
   },
   {
     nombre: "Pack G",
-    subtitulo: "Perfecto para tu negocio",
+    subtitulo: "Para tu negocio",
     precio: "$350.000 ARS",
     precioNota: "Precio Final",
     items: [
@@ -316,7 +316,20 @@ function renderDots() {
 
 function updateSlider() {
   const cardWidth = track.children[0].offsetWidth;
-  track.style.transform = `translateX(${-current * cardWidth}px)`;
+  const visibleWidth = track.parentElement.offsetWidth;
+  const totalCards = cardsData.length;
+  const totalWidth = cardWidth * totalCards;
+  let translateX = -current * cardWidth;
+
+  // Si es la última carta y el track es más ancho que el contenedor, ajusta para pegarla a la derecha
+  if (current === totalCards - 1 && totalWidth > visibleWidth) {
+    translateX = visibleWidth - totalWidth;
+  }
+
+  // Evita desplazar más allá del inicio
+  if (translateX > 0) translateX = 0;
+
+  track.style.transform = `translateX(${translateX}px)`;
   renderDots();
 }
 

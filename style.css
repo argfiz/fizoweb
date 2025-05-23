@@ -355,7 +355,7 @@ section {
 }
 
 /* ========================================= PACK CARDS =============================================*/
-.cards-container {
+.cards__container {
   display: flex;
   align-content: flex-start;
   justify-content: center;
@@ -382,36 +382,34 @@ section {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.card-header {
-  color: #fff;
-  padding: 28px 18px 28px;
+.card__header {
   border-radius: 0px;
   width: 100%;
   box-shadow: 0 4px 18px rgba(67, 97, 238, 0.10);
   position: relative;
   overflow: hidden;
-  text-align: right;
+  
 }
 
-.card-header.pack-s,
+.card__header.pack-s,
 .card-price-container.pack-s {
   background: #d4357c;
   color: #fff;
 }
 
-.card-header.pack-m,
+.card__header.pack-m,
 .card-price-container.pack-m {
   background: var(--secondary);
   color: #fff;
 }
 
-.card-header.pack-g,
+.card__header.pack-g,
 .card-price-container.pack-g {
   background: #4c4c4c;
   color: #fff;
 }
 
-.card-header h2 {
+.card__header h2 {
   font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -423,10 +421,10 @@ section {
   display: inline-block;
 }
 
-.card-header h2 span {
+.card__header h2 span {
   font-size: 4rem;
   font-weight: 900;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+  background: red;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -437,7 +435,7 @@ section {
   vertical-align: middle;
 }
 
-.card-header p {
+.card__header p {
   font-size: 1.4rem;
   font-weight: 500;
   background: rgba(255, 255, 255, 0.13);
@@ -1877,26 +1875,24 @@ footer {
   overflow: visible;
 }
 
-.card__header::before,
-.card-header::before {
+.card__header::before {
   content: '';
   position: absolute;
-  left: 30px;
-  right: 30px;
+  width: 100%;
+  left: 0;
   bottom: 0;
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #fff6, transparent);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
   opacity: 0.7;
   pointer-events: none;
 }
 
 .card__title,
-.card-header h2 {
+.card__header h2 {
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 2px;
-  margin-bottom: 0.2em;
   color: #fff;
   /* Color sólido, sin gradiente */
   background: none;
@@ -1908,10 +1904,9 @@ footer {
 }
 
 .card__subtitle,
-.card-header h3 {
+.card__header h3 {
   font-size: 1.1rem;
   font-weight: 500;
-  margin-bottom: 0.5em;
   color: #fff;
   opacity: 0.92;
   letter-spacing: 1px;

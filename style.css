@@ -282,8 +282,8 @@ section {
   display: flex;
   gap: 24px;
   width: auto;
-  margin: 0 auto;
-  margin-bottom: 25px;
+  margin: 15px auto;
+  
   /*Esto permite el deslizamiento horizontal personalizado y deja el scroll vertical:*/
   touch-action: pan-y;
   -ms-touch-action: pan-y;
@@ -509,7 +509,7 @@ section {
   margin-top: 18px;
 }
 
-.card-price {
+.card__footer {
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
@@ -519,16 +519,24 @@ section {
   z-index: 1;
   position: relative;
 }
+.card__footer .card__copy {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(50, 50, 93, 0.10);
+  margin-top: 3px;
 
-.card-price-container span {
+}
+.card__footer .card__copy span {
   font-size: 1.2rem;
   font-weight: 600;
-  display: inline-block;
   z-index: 1;
   position: relative;
   letter-spacing: 2px;
   box-shadow: 0 2px 8px rgba(67, 97, 238, 0.08);
   color: #fff;
+  margin-top: -5px;
 }
 
 /* =================================== SECTION SERVICES ============================================ */
@@ -1088,24 +1096,9 @@ footer {
   background-color: var(--light-gray);
 }
 
-/* Flechita bajo el subtítulo del header */
-.card-header .card-arrow-indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 18px;
-  width: 100%;
-  pointer-events: none;
-  transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), color 0.3s;
-  color: #fff;
-  transform: rotate(0deg);
-}
 
-/* Gira la flecha cuando la card está abierta */
-.card.open .card-header .card-arrow-indicator {
-  transform: rotate(180deg);
-  color: var(#fff, #f72585);
-}
+
+
 
 
 
@@ -1607,7 +1600,10 @@ footer {
   .card-header h2 {
     font-size: 2rem;
   }
+  #services .title-container {
+    padding: 0 25px;
 
+  }
   #services .title-container h2 {
     font-size: 2.0rem;
   }
@@ -1905,7 +1901,7 @@ footer {
 
 .card__subtitle,
 .card__header h3 {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #fff;
   opacity: 0.92;

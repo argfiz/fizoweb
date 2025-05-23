@@ -172,7 +172,7 @@ const servicesData = [
     key: "hosting",
     icon: "fas fa-server",
     title: "Hosting",
-    desc: "Ofrecemos instalación y alojamiento web en AWS, garantizando alto rendimiento y estabilidad asegurando su funcionamiento."
+    desc: "Ofrecemos instalación y alojamiento web en AWS como parte del servicio, garantizando alto rendimiento y estabilidad asegurando su funcionamiento."
   },
   {
     key: "mantenimiento",
@@ -351,20 +351,25 @@ window.addEventListener('resize', updateSlider);
 let startX = 0;
 let isDragging = false;
 
+function isSwipeEnabled() {
+  return window.innerWidth <= 900;
+}
+
 track.addEventListener('pointerdown', (e) => {
+  if (!isSwipeEnabled()) return;
   isDragging = true;
   startX = e.clientX;
   track.style.cursor = 'grabbing';
 });
 
 track.addEventListener('pointermove', (e) => {
-  if (!isDragging) return;
+  if (!isSwipeEnabled() || !isDragging) return;
   const dx = e.clientX - startX;
   track.style.transform = `translateX(${-current * track.children[0].offsetWidth + dx}px)`;
 });
 
 track.addEventListener('pointerup', (e) => {
-  if (!isDragging) return;
+  if (!isSwipeEnabled() || !isDragging) return;
   isDragging = false;
   track.style.cursor = '';
   const dx = e.clientX - startX;
@@ -379,9 +384,8 @@ track.addEventListener('pointerup', (e) => {
 });
 
 track.addEventListener('pointerleave', () => {
-  if (isDragging) {
-    isDragging = false;
-    track.style.cursor = '';
-    updateSlider();
-  }
+  if (!isSwipeEnabled() || !isDragging) return;
+  isDragging = false;
+  track.style.cursor = '';
+  updateSlider();
 });

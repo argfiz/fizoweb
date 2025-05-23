@@ -1304,9 +1304,9 @@ footer {
   }
 
   .service-mini-card.active {
-    width: 90%;
-    min-height: 200px;
-    max-height: 200px;
+    width: 100%;
+    min-height: 250px;
+    max-height: 250px;
     justify-content: center;
   }
 
@@ -1507,6 +1507,11 @@ footer {
   .nav-links a:focus::after {
     width: 60%;
   }
+  .service-mini-card.active {
+    width: 95%;
+    min-height: 300px;
+    max-height: 300px;
+  }
 }
 
 @media (max-width: 500px) {
@@ -1582,6 +1587,8 @@ footer {
 
   .service-mini-card.active {
     width: 95%;
+    min-height: 320px;
+    max-height: 320px;
   }
 
   .footer-container {
@@ -1716,6 +1723,10 @@ footer {
   .slider-gallery-track .card {
     max-width: 280px;
     min-width: 280px;
+  }
+  .service-mini-card.active {
+    min-height: 300px;
+    max-height: 300px;
   }
 }
 

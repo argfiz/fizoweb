@@ -135,8 +135,28 @@ function renderProductDetails() {
     </div>
   `).join('');
 }
+
+function animateProductRowsOnScroll() {
+  const rows = document.querySelectorAll('.product-detail-row');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.animationPlayState = 'running';
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  rows.forEach(row => {
+    row.style.animationPlayState = 'paused';
+    observer.observe(row);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   renderProductDetails();
+  animateProductRowsOnScroll();
 });
 
 /*****************************************************************************************************/

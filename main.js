@@ -1,4 +1,68 @@
 /*****************************************************************************************************/
+/* ========================================== FAQ SECTION =========================================== */
+/*****************************************************************************************************/
+const faqData = [
+  {
+    question: "¿Qué incluye el desarrollo de mi página web?",
+    answer: "Incluye diseño personalizado, desarrollo responsive, integración de secciones, productos, formulario de contacto, enlaces a redes sociales y optimización básica para buscadores."
+  },
+  {
+    question: "¿Puedo modificar el contenido de mi web después de publicada?",
+    answer: "Sí, ofrecemos servicios de mantenimiento y actualización para que puedas modificar textos, imágenes o productos cuando lo necesites."
+  },
+  {
+    question: "¿Cuánto tiempo tarda en estar lista mi web?",
+    answer: "El tiempo depende del pack y la cantidad de contenido, pero normalmente entre 7 y 15 días hábiles desde la entrega de la información."
+  },
+  {
+    question: "¿El hosting está incluido en el servicio?",
+    answer: "Sí, todos los packs incluyen un año de hosting gratuito en servidores de alta calidad. Luego puedes renovar el servicio si lo deseas."
+  },
+  {
+    question: "¿Cómo puedo solicitar soporte o ayuda?",
+    answer: "Puedes contactarnos por email, WhatsApp o el formulario de contacto. Respondemos rápido y te ayudamos en todo el proceso."
+  }
+];
+
+// Render FAQ solo si existe el contenedor
+function renderFAQ() {
+  const faqList = document.getElementById('faqList');
+  
+  if (!faqList) return;
+  faqList.innerHTML = faqData.map((item, idx) => `
+    <div class="faq-item" data-idx="${idx}">
+      <button class="faq-question" aria-expanded="false" type="button">
+        ${item.question}
+        <span class="faq-icon"><i class="fas fa-chevron-right"></i></span>
+      </button>
+      <div class="faq-answer">${item.answer}</div>
+    </div>
+  `).join('');
+
+  // Toggle logic
+  faqList.querySelectorAll('.faq-question').forEach((btn, idx) => {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Cierra todos
+      faqList.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      // Abre el seleccionado si no estaba abierto
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
+// Ejecutar SIEMPRE al cargar el archivo JS (no uses DOMContentLoaded porque el script está al final)
+renderFAQ();
+
+
+/*****************************************************************************************************/
 /* ========================================== PRODUCT GALLERY ====================================== */
 /*****************************************************************************************************/
 const productData = [
@@ -389,3 +453,4 @@ track.addEventListener('pointerleave', () => {
   track.style.cursor = '';
   updateSlider();
 });
+

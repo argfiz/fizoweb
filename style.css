@@ -1681,7 +1681,7 @@ footer {
     margin-bottom: 32px;
   }
 
-  .product-detail-row .image-container,
+  .product-detail_row .image-container,
   .product-detail-row .text-container {
     max-width: 95vw;
     min-width: 0;
@@ -2165,10 +2165,11 @@ footer {
   animation-delay: 0.3s;
 }
 
-/* Quita la animación solo a la primera fila */
-.product-detail-row:first-child {
-  opacity: 1;
+/* Quita la animación a todos los .product-detail-row en todas las vistas */
+.product-detail-row {
+  opacity: 1 !important;
   animation: none !important;
-  filter: none;
-  transform: none;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
 }

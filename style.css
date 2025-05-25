@@ -1456,8 +1456,8 @@ footer {
   }
 
   .slider-gallery-track .card {
-    max-width: 280px;
-    min-width: 280px;
+    max-width: 300px;
+    min-width: 300px;
   }
 
   .nav-menu {
@@ -1643,8 +1643,8 @@ footer {
   }
 
   .slider-gallery-track .card {
-    max-width: 280px;
-    min-width: 280px;
+    max-width: 300px;
+    min-width: 300px;
     transition:
       max-width 0.4s cubic-bezier(.4, 0, .2, 1),
       min-width 0.4s cubic-bezier(.4, 0, .2, 1),
@@ -1835,8 +1835,8 @@ footer {
   }
 
   .slider-gallery-track .card {
-    max-width: 280px;
-    min-width: 280px;
+    max-width: 300px;
+    min-width: 300px;
   }
    #services .title-container h2{
     font-size: 1.8rem;

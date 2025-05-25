@@ -4,7 +4,7 @@
 const faqData = [
   {
     question: "¿Qué incluye el desarrollo de mi página web?",
-    answer: "Incluye diseño personalizado, desarrollo responsive, integración de secciones, productos, formulario de contacto, enlaces a redes sociales y optimización básica para buscadores."
+    answer: "Incluye un atractivo diseño, desarrollo responsive, integración de secciones, productos, formulario de contacto, enlaces a redes sociales y optimización básica para buscadores."
   },
   {
     question: "¿Puedo modificar el contenido de mi web después de publicada?",

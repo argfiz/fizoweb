@@ -1600,12 +1600,8 @@ footer {
     text-align: center;
   }
   .product-detail-row .image-container img {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 32px;
-    min-height: 32px;
-    max-width: 48px;
-    max-height: 48px;
+    max-width: 100px;
+    max-height: 100px;
     object-fit: cover;
     box-shadow: none;
     display: block;
@@ -1727,12 +1723,8 @@ footer {
   }
 
   .product-detail-row .image-container img {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 32px;
-    min-height: 32px;
-    max-width: 48px;
-    max-height: 48px;
+    max-width: 100px;
+    max-height: 100px;
     object-fit: cover;
     box-shadow: none;
     display: block;

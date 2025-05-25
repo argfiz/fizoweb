@@ -1211,8 +1211,8 @@ footer {
 
   .slider-gallery-track .card {
     /* No hay efecto de "vitrina" ni corrimiento */
-    max-width: 290px;
-    min-width: 290px;
+    max-width: 320px;
+    min-width: 320px;
     opacity: 1;
     transform: none;
     z-index: 1;
@@ -2102,6 +2102,7 @@ footer {
   justify-content: space-between;
   width: 100%;
   transition: background 0.2s;
+  text-align: left;
 }
 
 .faq-question:hover,

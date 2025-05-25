@@ -298,7 +298,8 @@ document.querySelectorAll('.service-pill').forEach(pill => {
 /*****************************************************************************************************/
 const sliderCardsData = [
   { 
-    nombre: "Pack S",
+    nombre: "Pack ",
+    tipo: "S",
     subtitulo: "Para emprendedores",
     precio: "$150.000 ARS",
     precioNota: "Precio Final",
@@ -315,7 +316,8 @@ const sliderCardsData = [
     ]
   },
   {
-    nombre: "Pack M",
+    nombre: "Pack ",
+    tipo: "M",
     subtitulo: "Para los indecisos",
     precio: "$250.0000 ARS",
     precioNota: "Precio Final",
@@ -332,7 +334,8 @@ const sliderCardsData = [
     ]
   },
   {
-    nombre: "Pack L",
+    nombre: "Pack ",
+    tipo: "L",
     subtitulo: "Para tu negocio",
     precio: "$350.000 ARS",
     precioNota: "Precio Final",
@@ -359,14 +362,14 @@ let current = 0;
 function renderCards() {
   track.innerHTML = cardsData.map(card => {
     let packClass = '';
-    if (card.nombre.includes('Pack S')) packClass = 'pack-s';
-    if (card.nombre.includes('Pack M')) packClass = 'pack-m';
-    if (card.nombre.includes('Pack L')) packClass = 'pack-l';
+    if (card.tipo.includes('S')) packClass = 'pack-s';
+    if (card.tipo.includes('M')) packClass = 'pack-m';
+    if (card.tipo.includes('L')) packClass = 'pack-l';
     return `
       <article class="card">
         
         <header class="card__header ${packClass}">
-          <h2 class="card__title">${card.nombre}</h2>
+          <h2 class="card__title">${card.nombre}<span>${card.tipo}</span></h2>
           <h3 class="card__subtitle">${card.subtitulo}</h3>
         </header>
         <div class="card__body">

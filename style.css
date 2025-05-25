@@ -2193,3 +2193,30 @@ footer {
   transform: none !important;
   transition: none !important;
 }
+
+
+
+/* ...existing code... */
+
+/* Círculo blanco para el span dentro de .card__header h2 */
+.card__header h2 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-left: 12px;
+  box-shadow: 0 2px 8px rgba(67, 97, 238, 0.10);
+  vertical-align: middle;
+}
+
+/* Color dinámico según el pack */
+.card__header.pack-s h2 span { color: #d4357c; }
+.card__header.pack-m h2 span { color: var(--secondary); }
+.card__header.pack-l h2 span { color: #4c4c4c; }
+.card__header.pack-g h2 span { color: #4c4c4c; }

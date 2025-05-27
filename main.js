@@ -4,7 +4,7 @@
 const faqData = [
   {
     question: "¿Qué incluye el desarrollo de mi página web?",
-    answer: "Incluye un atractivo diseño, desarrollo responsive, integración de secciones, productos, formulario de contacto, enlaces a redes sociales y optimización básica para buscadores."
+    answer: "Incluye un atractivo diseño, desarrollo responsive, integración de secciones, productos, formulario de contacto, enlaces a redes sociales y optimización para buscadores."
   },
   {
     question: "¿Puedo modificar el contenido de mi web después de publicada?",
@@ -12,7 +12,7 @@ const faqData = [
   },
   {
     question: "¿Cuánto tiempo tarda en estar lista mi web?",
-    answer: "El tiempo depende del pack y la cantidad de contenido, pero normalmente entre 7 y 15 días hábiles desde la entrega de la información."
+    answer: "El tiempo depende del pack y la cantidad de contenido, pero normalmente entre 7 y 20 días hábiles desde la entrega de la información."
   },
   {
     question: "¿El hosting está incluido en el servicio?",
@@ -226,13 +226,13 @@ const servicesData = [
     key: "paginas",
     icon: "fas fa-file-alt",
     title: "Páginas",
-    desc: "Cada página está diseñada para contener las secciones que sean necesarias, cada página contiene una parte clave de la información del negocio."
+    desc: "Cada página está diseñada para contener las secciones que sean necesarias, cada una contiene una parte clave de la información del negocio."
   },
   {
     key: "secciones",
     icon: "fas fa-layer-group",
     title: "Secciones",
-    desc: "Cada sección cuenta con una altura aproximada adaptada a la pantalla, garantizando una presentación óptima de la información almacenada."
+    desc: "Cada sección cuenta con una altura aproximada a la pantalla, garantizando una presentación óptima de la información almacenada."
   },
   {
     key: "productos",
@@ -322,7 +322,7 @@ const sliderCardsData = [
     precio: "$250.0000 ARS",
     precioNota: "Precio Final",
     items: [
-      "3 Página",
+      "3 Páginas",
       "9 Secciones",
       "25 Productos",
       "Multidispositivos",
@@ -340,7 +340,7 @@ const sliderCardsData = [
     precio: "$350.000 ARS",
     precioNota: "Precio Final",
     items: [
-      "5 Página",
+      "5 Páginas",
       "15 Secciones",
       "50 Productos",
       "Multidispositivos",

@@ -8,7 +8,7 @@ const faqData = [
   },
   {
     question: "¿Puedo modificar el contenido de mi web después de publicada?",
-    answer: "Sí, ofrecemos servicios de mantenimiento y actualización para que puedas modificar textos, imágenes o productos cuando lo necesites."
+    answer: "Sí, hasta una actualización gratuita con cambios menores para que puedas modificar textos, imágenes o productos. Los cambios mayores tendran costo adicional."
   },
   {
     question: "¿Cuánto tiempo tarda en estar lista mi web?",
@@ -17,11 +17,8 @@ const faqData = [
   {
     question: "¿El hosting está incluido en el servicio?",
     answer: "Sí, todos los packs incluyen un año de hosting gratuito en servidores de alta calidad. Luego puedes renovar el servicio si lo deseas."
-  },
-  {
-    question: "¿Cómo puedo solicitar soporte o ayuda?",
-    answer: "Puedes contactarnos por email, WhatsApp o el formulario de contacto. Respondemos rápido y te ayudamos en todo el proceso."
   }
+  
 ];
 
 // Render FAQ solo si existe el contenedor
@@ -262,7 +259,7 @@ const servicesData = [
     key: "mantenimiento",
     icon: "fas fa-tools",
     title: "Mantenimiento",
-    desc: "Mientras estemos a cargo del Hosting realizamos copias de seguridad para proteger tu sitio ante cualquier problema y evitar pérdida de datos."
+    desc: "Mientras estemos a cargo del Hosting nos encargamos de su funcionamiento y realizamos copias de seguridad para proteger tu sitio ante cualquier problema y evitar pérdida de datos."
   }
 ];
 
@@ -301,7 +298,7 @@ const sliderCardsData = [
     nombre: "Pack ",
     tipo: "S",
     subtitulo: "Para emprendedores",
-    precio: "$150.000 ARS",
+    precio: "$200.000 ARS",
     precioNota: "Precio Final",
     items: [
       "1 Página",
@@ -319,7 +316,7 @@ const sliderCardsData = [
     nombre: "Pack ",
     tipo: "M",
     subtitulo: "Para los indecisos",
-    precio: "$250.0000 ARS",
+    precio: "$300.0000 ARS",
     precioNota: "Precio Final",
     items: [
       "3 Páginas",
@@ -337,7 +334,7 @@ const sliderCardsData = [
     nombre: "Pack ",
     tipo: "L",
     subtitulo: "Para tu negocio",
-    precio: "$350.000 ARS",
+    precio: "$400.000 ARS",
     precioNota: "Precio Final",
     items: [
       "5 Páginas",

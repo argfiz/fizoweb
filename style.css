@@ -1721,7 +1721,7 @@ footer {
     justify-content: center;
     align-items: center;
     display: flex !important;
-    margin-bottom: -25px;
+    margin-bottom: -15px;
     min-width: 0;
     max-width: none;
   }

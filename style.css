@@ -1465,14 +1465,15 @@ footer {
   }
 
   .nav-menu {
-    position: fixed;
+   position: fixed;
     top: 0;
     right: -100%;
     left: auto;
     bottom: 0;
     width: 82vw;
     max-width: 340px;
-    height: 100vh;
+    height: 100dvh; /* Usa 100dvh para móviles modernos */
+    min-height: 100vh; /* Fallback para navegadores antiguos */
     background: rgba(56, 25, 84, 0.88);
     backdrop-filter: blur(14px);
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
@@ -1481,7 +1482,6 @@ footer {
     align-items: center;
     justify-content: flex-end;
     z-index: 1200;
-    backdrop-filter: blur(14px);
     padding: 0;
     gap: 0;
     opacity: 0;

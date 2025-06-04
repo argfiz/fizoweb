@@ -176,6 +176,15 @@ navLinks.forEach(link => {
   });
 });
 
+//Cerrar menú al hacer click en cualquier parte fuera del menu
+document.addEventListener('click', (event) => {
+  if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
 /*****************************************************************************************************/
 /* ============================================ NAVBAR ============================================= */
 /*****************************************************************************************************/
